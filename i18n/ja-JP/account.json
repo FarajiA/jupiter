@@ -29,13 +29,13 @@
     "translation" : "請求情報"
   },
   "billing.leagalentity.onica" : {
-    "translation" : "__NOT_TRANSLATED__"
+    "translation" : "Onica Technologies Canada, Inc"
   },
   "billing.leagalentity.rack" : {
-    "translation" : "__NOT_TRANSLATED__"
+    "translation" : "Rackspace International GMBH"
   },
   "billing.leagalentity.select" : {
-    "translation" : "__NOT_TRANSLATED__"
+    "translation" : "契約事業者"
   },
   "billing.tips.currency.restrictions" : {
     "translation" : "CADは、カナダにお住まいのOnicaのお客様のみご利用いただけます。<br />AUD、EUR、GBPは、マネージドAzureクラウド製品が選択されている場合にのみ使用できます。"
