@@ -98,8 +98,9 @@ export const validatePhoneNumber = (values, { t = i18nT() }) => {
   return errors;
 };
 
-export const validateCustomerInformation = (values, { t = i18nT() }) => {
+export const validateCustomerInformation = (values, { t = i18nT(), productType }) => {
   const customerInfo = _.get(values, 'customerInfo', {});
+  const channelTypeRequired = (productType === 'managed_vmc');
   const errors = validate(customerInfo, {
     productType: {
       presence: {
@@ -110,6 +111,11 @@ export const validateCustomerInformation = (values, { t = i18nT() }) => {
     customerType: {
       presence: {
         allowEmpty: false,
+        message: t('validation:input.required')
+      }
+    },
+    channelType: {
+      presence: channelTypeRequired && {
         message: t('validation:input.required')
       }
     }

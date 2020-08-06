@@ -40,14 +40,35 @@
   "billing.tips.currency.restrictions" : {
     "translation" : "CAD currency is restricted to Onica customers who live in Canada. <br /> AUD, EUR, and GBP currencies are only available when Managed Azure Cloud product is selected."
   },
+  "channel.type.aws" : {
+    "translation" : "AWS Originated"
+  },
+  "channel.type.carahsoft" : {
+    "translation" : "Public Sector"
+  },
   "channel.type.insight" : {
-    "translation" : "Insight"
+    "translation" : "Standard"
+  },
+  "channel.type.subheader.carahsoft" : {
+    "translation" : "Rackspace RGS/Carahsoft Originated"
+  },
+  "channel.type.subheader.insight" : {
+    "translation" : "Rackspace/VMware Originated"
   },
   "customer.actions.select" : {
     "translation" : "Select Customer Type"
   },
   "customer.channel.select" : {
-    "translation" : "Select Channel"
+    "translation" : "Select VMware Cloud on AWS Transaction Type"
+  },
+  "customer.desc.vmc.channeltype.aws" : {
+    "translation" : "Choose this option if the customer originated from AWS or needs to transact VMC on AWS on AWS paper."
+  },
+  "customer.desc.vmc.channeltype.publicsector" : {
+    "translation" : "Choose this option if the customer IS a Public Sector/State, Local, and Education (SLED) customer that needs to transact through RGS/Carahsoft."
+  },
+  "customer.desc.vmc.channeltype.standard" : {
+    "translation" : "Choose this option if the customer was originated by Rackspace or VMware and IS NOT a Public Sector/State, Local, and Education (SLED) customer."
   },
   "customer.header.info" : {
     "translation" : "Customer Information"
@@ -55,14 +76,8 @@
   "customer.tips.rbu.productRestriction" : {
     "translation" : "Currently RBU customers only have access to Managed AWS"
   },
-  "customer.tips.vmc.channelRestriction" : {
-    "translation" : "Only Managed VMware Cloud customers have access to select channel"
-  },
-  "customer.type.aws" : {
-    "translation" : "AWS"
-  },
-  "customer.type.carahsoft" : {
-    "translation" : "Carahsoft"
+  "customer.tips.vmc.channeltype.alert" : {
+    "translation" : "Please be sure of your choice as this affects finance and compensation. If unsure please contact <0>{email}</0>"
   },
   "customer.type.onica" : {
     "translation" : "Onica"
