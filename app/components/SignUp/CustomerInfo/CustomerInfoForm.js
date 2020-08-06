@@ -43,9 +43,15 @@ export class CustomerInfoForm extends React.Component {
     });
   };
 
-  handleCleanChannel = () => {
-    this.props.clearChannel();
+  handleCleanChannel = (e) => {
+    this.props.channelType !== ''
+         && e.target.value !== 'managed_vmc'
+         && this.props.clearChannel();
   }
+
+  handleChannelUpdate = (e) => {
+    this.props.updateChannel(e.target.value);
+  };
 
   render() {
     const { t, handleSubmit, customerType, productType } = this.props;
@@ -55,8 +61,12 @@ export class CustomerInfoForm extends React.Component {
           <h2>{t('account:customer.header.info')}</h2>
           <FormSection name="customerInfo">
             <CustomerType handleCustomerTypeChange={this.handleCustomerTypeChange} />
-            <Product customerType={customerType} />
-            <ChannelType productType={productType} clearChannelType={this.handleCleanChannel} />
+            <Product customerType={customerType} clearChannelType={this.handleCleanChannel} />
+            {
+            productType === 'managed_vmc' && (
+              <ChannelType channelType={this.props.channelType} handleChannelUpdate={this.handleChannelUpdate} />
+            )
+            }
           </FormSection>
           <div className="NavButtons">
             <div className="hxRow">
@@ -79,7 +89,9 @@ CustomerInfoForm.propTypes = {
   t: PropTypes.func.isRequired,
   customerType: PropTypes.string,
   productType: PropTypes.string,
+  channelType: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
+  updateChannel: PropTypes.func.isRequired,
   clearChannel: PropTypes.func.isRequired,
   clearProduct: PropTypes.func.isRequired,
   setAddress: PropTypes.func.isRequired,
@@ -93,6 +105,7 @@ const mapStateToProps = (state) => {
   return {
     customerType: formValueSelector('signUp')(state, 'customerInfo.customerType'),
     productType: formValueSelector('signUp')(state, 'customerInfo.productType'),
+    channelType: formValueSelector('signUp')(state, 'customerInfo.channelType'),
     initialValues: {
       billingInfo: {
         address: {
@@ -124,6 +137,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     clearChannel: () => {
       dispatch(change('signUp', 'customerInfo.channelType', ''));
+    },
+    updateChannel: (value) => {
+      dispatch(change('signUp', 'customerInfo.channelType', value));
     }
   };
 };

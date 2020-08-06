@@ -1,5 +1,5 @@
 import React from 'react';
-import { mountWithForm, mountedForm } from '../../../../test/provider';
+import { mountWithForm } from '../../../../test/provider';
 import { t } from '../../../../test/i18n/mocks';
 import { CustomerInfoForm } from './CustomerInfoForm';
 import enzyme from 'enzyme';
@@ -9,11 +9,13 @@ describe('CustomerInfoForm', () => {
   const clearProductMock = jest.fn();
   const clearChannelMock = jest.fn();
   const submitMock = jest.fn();
+  const mockUpdateChannel = jest.fn();
   const getCountryMock = jest.fn();
   const defaultProps = {
     handleSubmit: submitMock,
     customerType: '',
     productType: '',
+    updateChannel: mockUpdateChannel,
     setAddress: setAddressMock,
     clearProduct: clearProductMock,
     getCountry: getCountryMock,
@@ -78,17 +80,43 @@ describe('CustomerInfoForm', () => {
     expect(submitMock).toHaveBeenCalled();
   });
 
-  test('handleCleanChannel is invoked upon changing the product type from managed_vmc to something else', () => {
+  test('Transaction type option is not rendered if product type is not managed_vmc', () => {
+    const wrapper = shallow();
+    expect(wrapper.find('ChannelType').length).toBe(0);
+  });
+
+  test('clearChannel is invoked upon changing the product type from managed_vmc to something else', () => {
     const props = {
       ...defaultProps,
       productType: 'managed_vmc',
-      handleCleanChannel: jest.fn()
+      channelType: 'AWS',
+      handleChange: jest.fn()
     };
-    const wrapper = mountedForm(CustomerInfoForm, { props });
-    wrapper.setProps(
-      // setProps on children: https://github.com/enzymejs/enzyme/issues/1384
-      { children: React.cloneElement(wrapper.props().children, { ...props, productType: '' }) }
-    );
+    const wrapper = mountWithForm(CustomerInfoForm, { props });
+    const event = {
+      target: {
+        value: ''
+      }
+    };
+    wrapper.find('Product').props().clearChannelType(event);
+    wrapper.update();
     expect(props.clearChannel).toBeCalledTimes(1);
+  });
+
+  test('handleChannelUpdate is invoked upon changing the channel type', () => {
+    const props = {
+      ...defaultProps,
+      productType: 'managed_vmc',
+      handleChange: jest.fn()
+    };
+    const wrapper = mountWithForm(CustomerInfoForm, { props });
+    const event = {
+      target: {
+        value: ''
+      }
+    };
+    wrapper.find('ChannelType').props().handleChannelUpdate(event);
+    wrapper.update();
+    expect(props.updateChannel).toBeCalledTimes(1);
   });
 });
