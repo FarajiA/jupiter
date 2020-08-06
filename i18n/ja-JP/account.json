@@ -41,10 +41,10 @@
     "translation" : "標準"
   },
   "channel.type.subheader.carahsoft" : {
-    "translation" : "__NOT_TRANSLATED__"
+    "translation" : "Rackspace RGs/Carahsoft由来"
   },
   "channel.type.subheader.insight" : {
-    "translation" : "__NOT_TRANSLATED__"
+    "translation" : "Rackspace/VMware由来"
   },
   "customer.actions.select" : {
     "translation" : "顧客タイプを選択"
@@ -68,7 +68,7 @@
     "translation" : "現在、RBUのお客様は、マネージドAWSにのみアクセスできます。"
   },
   "customer.tips.vmc.channeltype.alert" : {
-    "translation" : "__NOT_TRANSLATED__"
+    "translation" : "これはファイナンスや補償にも影響しますので、お間違いのないように確認してください。ご不明な点がある場合は、&lt;0&gt;{email}&lt;/0&gt; までご連絡ください。"
   },
   "customer.type.onica" : {
     "translation" : "Onica"
