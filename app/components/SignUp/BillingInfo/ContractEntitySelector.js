@@ -19,7 +19,7 @@ export class ContractEntitySelector extends React.Component {
       }
     ];
     return (
-      <div className="contract-entity-section">
+      <div className="u-space-top u-space-bottom">
         <Field
           name="contractEntity"
           component={DropDown}

@@ -2,7 +2,7 @@
 
 exports[`ContractEntitySelector it renders 1`] = `
 <div
-  className="contract-entity-section"
+  className="u-space-top u-space-bottom"
 >
   <div
     className="Dropdown"

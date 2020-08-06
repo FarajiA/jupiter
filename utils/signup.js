@@ -14,27 +14,25 @@ export const contractEntityInput = {
 };
 
 export const formatAltCustomer = (type, contractEntity) => {
-  ALT_CUSTOMER_SIGNUP_REQUEST.metadata.property.forEach((obj) => {
+  const clonedAltCustSignUpReq = _.cloneDeep(ALT_CUSTOMER_SIGNUP_REQUEST);
+  clonedAltCustSignUpReq.metadata.property.forEach((obj) => {
     if (obj.key === 'Business_Unit') {
       obj.value = type;
     }
   });
   if (contractEntity === 'ONICA_CA') {
-    ALT_CUSTOMER_SIGNUP_REQUEST.metadata.property.push(contractEntityInput);
+    clonedAltCustSignUpReq.metadata.property.push(contractEntityInput);
   }
-  return {
-    ...ALT_CUSTOMER_SIGNUP_REQUEST
-  };
+  return clonedAltCustSignUpReq;
 };
 
 export const formatRackspaceCustomer = (channelType) => {
+  const clonedRackCustSignUpReq = _.cloneDeep(RACK_CUSTOMER_SIGNUP_REQUEST);
   if (channelType) {
     channelInput.value = channelType;
-    RACK_CUSTOMER_SIGNUP_REQUEST.metadata.property.push(channelInput);
+    clonedRackCustSignUpReq.metadata.property.push(channelInput);
   }
-  return {
-    ...RACK_CUSTOMER_SIGNUP_REQUEST
-  };
+  return clonedRackCustSignUpReq;
 };
 
 export const formatRequest = (values) => {

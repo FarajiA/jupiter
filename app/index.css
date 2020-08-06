@@ -188,10 +188,13 @@ hx-text-control[hx-dirty] > input[type="password"]:enabled:invalid, hx-text-cont
     margin-top: 15px;
 }
 
-.contract-entity-section {
-    margin-top: 15px;
-    padding-bottom: 15px;
-}
+.u-space-left { margin-left: 15px; }
+
+.u-space-right { margin-right: 15px; }
+
+.u-space-top { margin-top: 15px; }
+
+.u-space-bottom { padding-bottom: 15px; }
 
 .channelType-section-desc {
     font-size: 71%;
