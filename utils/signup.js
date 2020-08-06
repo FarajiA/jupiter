@@ -41,7 +41,6 @@ export const formatRequest = (values) => {
   const type = _.get(values, ['customerInfo', 'customerType']);
   const channelType = _.get(values, ['customerInfo', 'channelType']);
   const contractEntity = _.get(values, ['billingInfo', 'contractEntity']);
-  console.log(contractEntity);
   const template = (
     type !== 'rackspace'
       ? formatAltCustomer(type.toUpperCase(), contractEntity)

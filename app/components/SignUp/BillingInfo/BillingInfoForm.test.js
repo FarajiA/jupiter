@@ -122,4 +122,21 @@ describe('BillingInfoForm', () => {
     expect(mockCheckAddress).toHaveBeenCalled();
     jest.runAllTimers();
   });
+
+  test('it renders Contract Entity Selector for Canadian Onica customers', () => {
+    const wrapper = shallow(
+      { customerType: 'onica',
+        country: 'CA' }
+    );
+    const component = wrapper.find('ContractEntitySelector');
+    expect(component).toHaveLength(1);
+  });
+
+  test('Contract Entity Selector is not rendered for non Onica customers', () => {
+    const wrapper = shallow(
+      { country: 'CA' }
+    );
+    const component = wrapper.find('ContractEntitySelector');
+    expect(component).toHaveLength(0);
+  });
 });

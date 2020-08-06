@@ -10,6 +10,7 @@ describe('CustomerInfoForm', () => {
   const clearChannelMock = jest.fn();
   const submitMock = jest.fn();
   const getCountryMock = jest.fn();
+  const clearContractEntityMock = jest.fn();
   const defaultProps = {
     handleSubmit: submitMock,
     customerType: '',
@@ -18,6 +19,7 @@ describe('CustomerInfoForm', () => {
     clearProduct: clearProductMock,
     getCountry: getCountryMock,
     clearChannel: clearChannelMock,
+    clearContractEntity: clearContractEntityMock,
     t
   };
 
@@ -90,5 +92,17 @@ describe('CustomerInfoForm', () => {
       { children: React.cloneElement(wrapper.props().children, { ...props, productType: '' }) }
     );
     expect(props.clearChannel).toBeCalledTimes(1);
+  });
+
+  test('clearContractEntity is invoked upon changing the customer type from onica to something else', () => {
+    const props = {
+      ...defaultProps,
+      customerType: 'onica'
+    };
+    const wrapper = mountedForm(CustomerInfoForm, { props });
+    wrapper.setProps(
+      { children: React.cloneElement(wrapper.props().children, { ...props, customerType: 'rbu' }) }
+    );
+    expect(props.clearContractEntity).toBeCalledTimes(1);
   });
 });

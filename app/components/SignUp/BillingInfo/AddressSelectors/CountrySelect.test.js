@@ -6,11 +6,14 @@ describe('CountrySelect', () => {
   const getCountries = jest.fn();
   const getCountry = jest.fn();
   const clearState = jest.fn();
+  const clearContractEntity = jest.fn();
   const defaultProps = {
     countries: {},
+    prevSelectedCountry: 'CA',
     getCountries,
     getCountry,
     clearState,
+    clearContractEntity,
     t
   };
 
@@ -50,7 +53,7 @@ describe('CountrySelect', () => {
     expect(values).toEqual(['', 'C1', 'C2', 'C3']);
   });
 
-  test('it calls getCountry prop when onChange is invoked', () => {
+  test('it calls getCountry and clearContractEntity prop when onChange is invoked', () => {
     const event = {
       target: {
         value: 'US'
@@ -59,6 +62,7 @@ describe('CountrySelect', () => {
     const wrapper = mounted();
     wrapper.find('select').simulate('change', event);
     expect(clearState).toHaveBeenCalled();
+    expect(clearContractEntity).toHaveBeenCalled();
     expect(getCountry).toHaveBeenCalledWith('US');
   });
 });
