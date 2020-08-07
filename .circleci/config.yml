@@ -110,10 +110,6 @@ workflows:
       # Triggered on all branches
       - build
 
-      - acceptance:
-          requires:
-            - build
-
       # All branches must go to staging before going to master - enforced by git branch protection.
       - staging-deploy-ask:
           <<: *not_master
@@ -124,6 +120,7 @@ workflows:
           <<: *not_master
           requires:
             - staging-deploy-ask
+            - acceptance
 
       # Because deploy to staging has already happened before merge to master, we can go to prod - enforced by git branch protection.
       - deploy-prod:
