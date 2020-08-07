@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputTiles it renders with appropriate props 1`] = `
+<div
+  className="hxCol hxSpan-12"
+>
+  <label
+    className={null}
+    htmlFor="tiles-id"
+  >
+    <span
+      className="InputField-label"
+    >
+      Tiles Label
+    </span>
+  </label>
+  <div
+    className="hxRow channelType-fields-spacing"
+  >
+    <label
+      className="hxChoice hxCol hxSpan-4-xs"
+    >
+      <input
+        checked={false}
+        name="channelType"
+        onChange={[Function]}
+        type="radio"
+        value="value_1"
+      />
+      <hx-tile
+        class="undefined"
+      >
+        <hx-icon
+          type="checkmark"
+        />
+        <header>
+          option-1
+        </header>
+        <header
+          className="hxSubdued"
+        >
+          <i>
+            <small>
+              First Choice SubHeader
+            </small>
+          </i>
+        </header>
+        <p
+          className="channelType-section-desc"
+        >
+          First Choice Description
+        </p>
+      </hx-tile>
+    </label>
+    <label
+      className="hxChoice hxCol hxSpan-4-xs"
+    >
+      <input
+        checked={false}
+        name="channelType"
+        onChange={[Function]}
+        type="radio"
+        value="value_2"
+      />
+      <hx-tile
+        class="undefined"
+      >
+        <hx-icon
+          type="checkmark"
+        />
+        <header>
+          option-2
+        </header>
+        <header
+          className="hxSubdued"
+        >
+          <i>
+            <small>
+              Second Choice SubHeader
+            </small>
+          </i>
+        </header>
+        <p
+          className="channelType-section-desc"
+        >
+          Second Choice Description
+        </p>
+      </hx-tile>
+    </label>
+  </div>
+  <div
+    className="error"
+  />
+  <div
+    className="hxRow"
+    id="tiles-desc"
+  >
+    <span
+      className="hxCol hxSpan-12"
+    >
+      <p>
+        tiles-disclaimer
+      </p>
+    </span>
+  </div>
+</div>
+`;

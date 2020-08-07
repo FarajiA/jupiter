@@ -13,6 +13,8 @@ describe('UserInfoForm', () => {
     country: 'US',
     handleSubmit: submitMock,
     signUp: signupMock,
+    pending: false,
+    result: true,
     clearResult: jest.fn(),
     history: {
       push: pushMock

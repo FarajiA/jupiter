@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { formValueSelector, reduxForm, FormSection, change, SubmissionError } from 'redux-form';
+import { formValueSelector, reduxForm, FormSection, SubmissionError } from 'redux-form';
 import _ from 'lodash';
 import { withTranslation } from 'react-i18next';
 import { validateBilling } from '../../../validators';
-import { ADDRESS_FIELDS } from '../../../actions/constants/address';
-import { getCountry } from '../../../actions/address/getCountry';
 import { checkAddress } from '../../../actions/address/validateAddress';
 import AddressSection from './AddressSection';
 import CurrencySelector from './CurrencySelector';
@@ -15,16 +13,6 @@ import Button from '../../helix/buttons/Button';
 import Submit from '../../helix/buttons/Submit';
 
 export class BillingInfoForm extends React.Component {
-  componentDidMount() {
-    const { customerType } = this.props;
-    if (customerType === 'rbu') {
-      this.populateAddressFields();
-      this.props.getCountry('JP'); // used when RBU address pre-populates
-    } else {
-      this.clearAddressFields();
-    }
-  }
-
   componentDidUpdate(prevProps) {
     const lastHasZip = prevProps.hasZipcode;
     const hasZip = this.props.hasZipcode;
@@ -32,18 +20,6 @@ export class BillingInfoForm extends React.Component {
       this.props.change('billingInfo.address.zipcode', '');
     }
   }
-
-  populateAddressFields = () => {
-    Object.entries(ADDRESS_FIELDS).forEach((entry) => {
-      this.props.setAddress(...entry);
-    });
-  };
-
-  clearAddressFields = () => {
-    Object.keys(ADDRESS_FIELDS).forEach((field) => {
-      this.props.setAddress(field, '');
-    });
-  };
 
   submitAddressValidation = async (values) => {
     const validationErrors = {
@@ -108,8 +84,6 @@ BillingInfoForm.propTypes = {
   t: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   customerType: PropTypes.string,
-  setAddress: PropTypes.func.isRequired,
-  getCountry: PropTypes.func.isRequired,
   checkAddress: PropTypes.func.isRequired,
   addressValidation: PropTypes.object,
   hasZipcode: PropTypes.bool,
@@ -146,12 +120,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setAddress: (field, value) => {
-      return dispatch(change('signUp', `billingInfo.address.${field}`, value));
-    },
-    getCountry: (countryCode) => {
-      return dispatch(getCountry(countryCode));
-    },
     checkAddress: (values) => {
       return dispatch(checkAddress(values));
     }

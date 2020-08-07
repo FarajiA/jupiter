@@ -9,15 +9,11 @@ describe('BillingInfoForm', () => {
   const submitMock = jest.fn();
   const mockCheckAddress = jest.fn();
   const pushMock = jest.fn();
-  const setAddressMock = jest.fn();
-  const getCountryMock = jest.fn();
   const defaultProps = {
     customerType: 'rackspace',
     country: 'US',
     handleSubmit: submitMock,
-    setAddress: setAddressMock,
     checkAddress: mockCheckAddress,
-    getCountry: getCountryMock,
     history: {
       push: pushMock
     },
@@ -38,25 +34,6 @@ describe('BillingInfoForm', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
-  });
-
-  it('calls setAddress and clearProduct if customerType is rbu', () => {
-    const wrapper = mounted({ customerType: 'rbu' });
-    wrapper.update();
-    expect(setAddressMock).toHaveBeenNthCalledWith(
-      1, 'street', 'Toranomon Hills Mori Tower 7th Floor Toranomon 1-23-1'
-    );
-  });
-
-  it('calls setAddress with empty params if customerType is not rbu', () => {
-    const wrapper = mounted({ customerType: 'aws' });
-    wrapper.update();
-    expect(setAddressMock).toHaveBeenNthCalledWith(1, 'street', '');
-  });
-
-  it('calls getCountry with the param JP if customerType is rbu', () => {
-    mounted({ customerType: 'rbu' });
-    expect(getCountryMock).toHaveBeenCalledWith('JP');
   });
 
   test('it passes correct props to AddressSection and CurrencySelector', () => {

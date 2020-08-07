@@ -188,4 +188,14 @@ hx-text-control[hx-dirty] > input[type="password"]:enabled:invalid, hx-text-cont
     margin-top: 15px;
 }
 
+.channelType-section-desc {
+    font-size: 71%;
+}
+.channelType-fields-spacing {
+    margin-top: 10px;
+}
+.channelType-disclaimer {
+    font-size: 82%;
+}
+
 
