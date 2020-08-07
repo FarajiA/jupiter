@@ -16,6 +16,8 @@ export class CustomerInfoForm extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.customerType === 'rbu' && prevProps.customerType !== this.props.customerType) {
       this.clearAddressFields();
+    } else if (prevProps.customerType === 'onica' && prevProps.customerType !== this.props.customerType) {
+      this.props.clearContractEntity();
     }
   }
 
@@ -96,6 +98,7 @@ CustomerInfoForm.propTypes = {
   clearProduct: PropTypes.func.isRequired,
   setAddress: PropTypes.func.isRequired,
   getCountry: PropTypes.func.isRequired,
+  clearContractEntity: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   })
@@ -137,6 +140,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     clearChannel: () => {
       dispatch(change('signUp', 'customerInfo.channelType', ''));
+    },
+    clearContractEntity: () => {
+      dispatch(change('signUp', 'billingInfo.contractEntity', ''));
     },
     updateChannel: (value) => {
       dispatch(change('signUp', 'customerInfo.channelType', value));

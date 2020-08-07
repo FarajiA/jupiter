@@ -182,13 +182,25 @@ export const validateCurrency = (values) => {
   return errors || {};
 };
 
+export const validateContractEntity = (values) => {
+  const errors = validate(values, {
+    contractEntity: {
+      presence: {
+        allowEmpty: false
+      }
+    }
+  }, { fullMessages: false });
+  return errors || {};
+};
+
 export const validateBilling = (values, { t = i18nT(), ...props }) => {
   translateDefaultValidators(t);
   const billing = _.get(values, 'billingInfo', {});
   return {
     billingInfo: {
       ...validateAddress(billing, { t, props }),
-      ...validateCurrency(billing, t)
+      ...validateCurrency(billing, t),
+      ...validateContractEntity(billing, t)
     }
   };
 };
