@@ -1,5 +1,5 @@
 import React from 'react';
-import { mountWithForm } from '../../../../test/provider';
+import { mountWithForm, mountedForm } from '../../../../test/provider';
 import { t } from '../../../../test/i18n/mocks';
 import { CustomerInfoForm } from './CustomerInfoForm';
 import enzyme from 'enzyme';
@@ -11,6 +11,7 @@ describe('CustomerInfoForm', () => {
   const submitMock = jest.fn();
   const mockUpdateChannel = jest.fn();
   const getCountryMock = jest.fn();
+  const clearContractEntityMock = jest.fn();
   const defaultProps = {
     handleSubmit: submitMock,
     customerType: '',
@@ -20,6 +21,7 @@ describe('CustomerInfoForm', () => {
     clearProduct: clearProductMock,
     getCountry: getCountryMock,
     clearChannel: clearChannelMock,
+    clearContractEntity: clearContractEntityMock,
     t
   };
 
@@ -101,6 +103,18 @@ describe('CustomerInfoForm', () => {
     wrapper.find('Product').props().clearChannelType(event);
     wrapper.update();
     expect(props.clearChannel).toBeCalledTimes(1);
+  });
+
+  test('clearContractEntity is invoked upon changing the customer type from onica to something else', () => {
+    const props = {
+      ...defaultProps,
+      customerType: 'onica'
+    };
+    const wrapper = mountedForm(CustomerInfoForm, { props });
+    wrapper.setProps(
+      { children: React.cloneElement(wrapper.props().children, { ...props, customerType: 'rbu' }) }
+    );
+    expect(props.clearContractEntity).toBeCalledTimes(1);
   });
 
   test('handleChannelUpdate is invoked upon changing the channel type', () => {
