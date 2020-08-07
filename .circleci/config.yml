@@ -115,12 +115,15 @@ workflows:
           <<: *not_master
           type: approval
           requires:
-            - acceptance
+            - build
       - deploy-staging:
           <<: *not_master
           requires:
             - staging-deploy-ask
-            - acceptance
+      - acceptance:
+          <<: *not_master
+          requires:
+            - deploy-staging
 
       # Because deploy to staging has already happened before merge to master, we can go to prod - enforced by git branch protection.
       - deploy-prod:
