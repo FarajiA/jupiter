@@ -1,0 +1,17 @@
+{
+  "name": "acceptance",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "codecept": "npx codeceptjs run-workers --suites 4 --grep @smoke --debug --plugins allure",
+    "test": "docker exec -it acceptance npm run codecept",
+    "posttest": "docker-compose down"
+  },
+  "dependencies": {
+    "codeceptjs": "^2.6.6",
+    "codeceptjs-chai": "^2.0.1"
+  },
+  "devDependencies": {
+    "webdriverio": "^6.3.6"
+  }
+}
