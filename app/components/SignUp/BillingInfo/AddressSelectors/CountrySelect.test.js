@@ -5,10 +5,12 @@ const { t } = global;
 describe('CountrySelect', () => {
   const getCountries = jest.fn();
   const getCountry = jest.fn();
+  const clearState = jest.fn();
   const defaultProps = {
     countries: {},
     getCountries,
     getCountry,
+    clearState,
     t
   };
 
@@ -56,6 +58,7 @@ describe('CountrySelect', () => {
     };
     const wrapper = mounted();
     wrapper.find('select').simulate('change', event);
+    expect(clearState).toHaveBeenCalled();
     expect(getCountry).toHaveBeenCalledWith('US');
   });
 });

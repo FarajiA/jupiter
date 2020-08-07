@@ -7,7 +7,7 @@ import CustomerTypeForm, { CustomerType } from './CustomerType';
 describe('CustomerType', () => {
   const handleChangeMock = jest.fn();
   const defaultProps = {
-    handleChange: handleChangeMock,
+    handleCustomerTypeChange: handleChangeMock,
     t
   };
 

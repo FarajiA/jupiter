@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 import { useTranslation } from 'react-i18next';
 import DropDown from '../../helix/inputTypes/Dropdown';
 
-export const CustomerType = ({ handleChange }) => {
+export const CustomerType = ({ handleCustomerTypeChange }) => {
   const { t } = useTranslation();
   const customerTypes = [
     {
@@ -32,7 +32,7 @@ export const CustomerType = ({ handleChange }) => {
             textField="label"
             label={t('account:customer.actions.select')}
             id="customer-select-popover"
-            onChange={handleChange}
+            onChange={handleCustomerTypeChange}
             required
           />
         </div>
@@ -42,7 +42,7 @@ export const CustomerType = ({ handleChange }) => {
 };
 
 CustomerType.propTypes = {
-  handleChange: PropTypes.func
+  handleCustomerTypeChange: PropTypes.func
 };
 
 export default CustomerType;

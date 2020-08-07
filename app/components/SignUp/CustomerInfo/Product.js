@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import DropDown from '../../helix/inputTypes/Dropdown';
 import Tooltip from '../../helix/Tooltip';
 
-export const Product = ({ customerType }) => {
+export const Product = ({ customerType, clearChannelType }) => {
   const { t } = useTranslation();
   const dropdownData = [
     {
@@ -50,12 +50,14 @@ export const Product = ({ customerType }) => {
       disabled={!customerType}
       tooltip={tooltip}
       required
+      onChange={clearChannelType}
     />
   );
 };
 
 Product.propTypes = {
-  customerType: PropTypes.string
+  customerType: PropTypes.string,
+  clearChannelType: PropTypes.func
 };
 
 export default Product;

@@ -2,68 +2,162 @@
 
 exports[`Product it renders 1`] = `
 <div
-  className="channelType-section"
+  className="hxRow channelType-section"
 >
   <div
-    className="Dropdown"
+    className="hxCol hxSpan-12"
   >
-    <hx-select-control>
-      <select
-        disabled={true}
-        id="channel-select-popover"
-        onChange={[Function]}
-        value=""
+    <label
+      className="hxRequired"
+      htmlFor="vmc-channeltype-select"
+    >
+      <span
+        className="InputField-label"
       >
-        <option
-          value=""
-        >
-          -- Please Select --
-        </option>
-        <option
-          value="Insight"
-        >
-          Insight
-        </option>
-        <option
-          value="Carahsoft"
-        >
-          Carahsoft
-        </option>
-        <option
-          value="AWS"
-        >
-          AWS
-        </option>
-      </select>
-      <hx-select />
+        Select VMware Cloud on AWS Transaction Type
+      </span>
+    </label>
+    <div
+      className="hxRow channelType-fields-spacing"
+    >
       <label
-        className="hxRequired"
-        htmlFor="channel-select-popover"
+        className="hxChoice hxCol hxSpan-4-xs"
       >
-        <span
-          className="InputField-label"
-        >
-          Select Channel
-        </span>
-        <div
-          className="tooltip"
+        <input
+          checked={false}
+          name="channelType"
+          onChange={[Function]}
+          type="radio"
+          value="Insight"
+        />
+        <hx-tile
+          class="hxMd"
         >
           <hx-icon
-            id="channel-restriction-tooltip"
-            type="help-circle"
+            type="checkmark"
           />
-          <hx-tooltip
-            for="channel-restriction-tooltip"
-            position="right-middle"
+          <header>
+            Standard
+          </header>
+          <header
+            className="hxSubdued"
           >
-            Only Managed VMware Cloud customers have access to select channel
-          </hx-tooltip>
-        </div>
+            <i>
+              <small>
+                Rackspace/VMware Originated
+              </small>
+            </i>
+          </header>
+          <p
+            className="channelType-section-desc"
+          >
+            Choose this option if the customer was originated by Rackspace or VMware and IS NOT a Public Sector/State, Local, and Education (SLED) customer.
+          </p>
+        </hx-tile>
       </label>
-    </hx-select-control>
+      <label
+        className="hxChoice hxCol hxSpan-4-xs"
+      >
+        <input
+          checked={false}
+          name="channelType"
+          onChange={[Function]}
+          type="radio"
+          value="Carahsoft"
+        />
+        <hx-tile
+          class="hxMd"
+        >
+          <hx-icon
+            type="checkmark"
+          />
+          <header>
+            Public Sector
+          </header>
+          <header
+            className="hxSubdued"
+          >
+            <i>
+              <small>
+                Rackspace RGS/Carahsoft Originated
+              </small>
+            </i>
+          </header>
+          <p
+            className="channelType-section-desc"
+          >
+            Choose this option if the customer IS a Public Sector/State, Local, and Education (SLED) customer that needs to transact through RGS/Carahsoft.
+          </p>
+        </hx-tile>
+      </label>
+      <label
+        className="hxChoice hxCol hxSpan-4-xs"
+      >
+        <input
+          checked={true}
+          name="channelType"
+          onChange={[Function]}
+          type="radio"
+          value="AWS"
+        />
+        <hx-tile
+          class="hxMd"
+        >
+          <hx-icon
+            type="checkmark"
+          />
+          <header>
+            AWS Originated
+          </header>
+          <header
+            className="hxSubdued"
+          >
+            <i>
+              <small>
+                
+              </small>
+            </i>
+          </header>
+          <p
+            className="channelType-section-desc"
+          >
+            Choose this option if the customer originated from AWS or needs to transact VMC on AWS on AWS paper.
+          </p>
+        </hx-tile>
+      </label>
+    </div>
     <div
       className="error"
     />
+    <div
+      className="hxRow"
+      id="tiles-desc"
+    >
+      <span
+        className="hxCol hxSpan-12"
+      >
+        <div
+          className="channelType-disclaimer channelType-fields-spacing"
+        >
+          <hx-icon
+            type="info-circle"
+          />
+           
+          Please be sure of your choice as this affects finance and compensation. If unsure please contact 
+          <a
+            href="mailto: vmware@rackspace.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            vmware@rackspace.com
+             
+            <hx-icon
+              type="envelope"
+            />
+          </a>
+        </div>
+      </span>
+    </div>
   </div>
 </div>
 `;

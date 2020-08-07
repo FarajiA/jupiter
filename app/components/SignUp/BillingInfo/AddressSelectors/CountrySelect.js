@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { Field } from 'redux-form';
+import { Field, change } from 'redux-form';
 import { withTranslation } from 'react-i18next';
 import { listCountries } from '../../../../actions/address/listCountries';
 import { getCountry } from '../../../../actions/address/getCountry';
@@ -14,6 +14,7 @@ export class CountrySelect extends React.Component {
   }
 
   onChange = (e) => {
+    this.props.clearState();
     this.props.getCountry(e.target.value);
   }
 
@@ -47,7 +48,8 @@ CountrySelect.propTypes = {
   t: PropTypes.func.isRequired,
   countries: PropTypes.object,
   getCountries: PropTypes.func.isRequired,
-  getCountry: PropTypes.func.isRequired
+  getCountry: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -63,6 +65,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getCountry: (countryCode) => {
       dispatch(getCountry(countryCode));
+    },
+    clearState: () => {
+      dispatch(change('signUp', 'billingInfo.address.state', ''));
     }
   };
 };
