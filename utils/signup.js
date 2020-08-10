@@ -8,33 +8,40 @@ export const channelInput = {
   'destination': 'CMS'
 };
 
-export const formatAltCustomer = (type) => {
-  ALT_CUSTOMER_SIGNUP_REQUEST.metadata.property.forEach((obj) => {
+export const contractEntityInput = {
+  'key': 'Cloud_Sub_Type_for_CE',
+  'value': 'ONICA_CA'
+};
+
+export const formatAltCustomer = (type, contractEntity) => {
+  const clonedAltCustSignUpReq = _.cloneDeep(ALT_CUSTOMER_SIGNUP_REQUEST);
+  clonedAltCustSignUpReq.metadata.property.forEach((obj) => {
     if (obj.key === 'Business_Unit') {
       obj.value = type;
     }
   });
-  return {
-    ...ALT_CUSTOMER_SIGNUP_REQUEST
-  };
+  if (contractEntity === 'ONICA_CA') {
+    clonedAltCustSignUpReq.metadata.property.push(contractEntityInput);
+  }
+  return clonedAltCustSignUpReq;
 };
 
 export const formatRackspaceCustomer = (channelType) => {
+  const clonedRackCustSignUpReq = _.cloneDeep(RACK_CUSTOMER_SIGNUP_REQUEST);
   if (channelType) {
     channelInput.value = channelType;
-    RACK_CUSTOMER_SIGNUP_REQUEST.metadata.property.push(channelInput);
+    clonedRackCustSignUpReq.metadata.property.push(channelInput);
   }
-  return {
-    ...RACK_CUSTOMER_SIGNUP_REQUEST
-  };
+  return clonedRackCustSignUpReq;
 };
 
 export const formatRequest = (values) => {
   const type = _.get(values, ['customerInfo', 'customerType']);
   const channelType = _.get(values, ['customerInfo', 'channelType']);
+  const contractEntity = _.get(values, ['billingInfo', 'contractEntity']);
   const template = (
     type !== 'rackspace'
-      ? formatAltCustomer(type.toUpperCase())
+      ? formatAltCustomer(type.toUpperCase(), contractEntity)
       : formatRackspaceCustomer(channelType)
   );
   return {

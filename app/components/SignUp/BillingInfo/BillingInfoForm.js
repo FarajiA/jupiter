@@ -9,6 +9,7 @@ import { validateBilling } from '../../../validators';
 import { checkAddress } from '../../../actions/address/validateAddress';
 import AddressSection from './AddressSection';
 import CurrencySelector from './CurrencySelector';
+import ContractEntitySelector from './ContractEntitySelector';
 import Button from '../../helix/buttons/Button';
 import Submit from '../../helix/buttons/Submit';
 
@@ -56,6 +57,10 @@ export class BillingInfoForm extends React.Component {
               country={country}
               t={t}
             />
+            {
+              customerType === 'onica' && country === 'CA'
+              && <ContractEntitySelector t={t} />
+            }
           </FormSection>
           <div className="NavButtons">
             <div className="hxRow">

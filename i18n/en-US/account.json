@@ -28,6 +28,15 @@
   "billing.header.info" : {
     "translation" : "Billing Information"
   },
+  "billing.leagalentity.onica" : {
+    "translation" : "Onica Technologies Canada, Inc"
+  },
+  "billing.leagalentity.rack" : {
+    "translation" : "Rackspace International GMBH"
+  },
+  "billing.leagalentity.select" : {
+    "translation" : "Contract Entity"
+  },
   "billing.tips.currency.restrictions" : {
     "translation" : "CAD currency is restricted to Onica customers who live in Canada. <br /> AUD, EUR, and GBP currencies are only available when Managed Azure Cloud product is selected."
   },

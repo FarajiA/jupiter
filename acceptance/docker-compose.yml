@@ -1,0 +1,47 @@
+version: '2'
+volumes:
+  reports:
+services:
+  hub:
+    image: 'selenium/hub:3.141.59-20200525'
+    ports:
+      - 4444
+      - 5900
+    volumes:
+      - /dev/shm:/dev/shm
+
+  chromeOne:
+    image: 'selenium/node-chrome:3.141.59-20200525'
+    depends_on:
+      - hub
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      HUB_HOST: hub
+    ports:
+      - 5900
+
+  chromeTwo:
+    image: 'selenium/node-chrome:3.141.59-20200525'
+    depends_on:
+      - hub
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      HUB_HOST: hub
+    ports:
+      - 5900
+
+  codecept:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: acceptance
+    volumes:
+      - reports:/var/tests/output/
+    depends_on:
+      - hub
+    links:
+      - hub
+      - chromeOne
+      - chromeTwo

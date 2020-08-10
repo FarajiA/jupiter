@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContractEntitySelector it renders 1`] = `
+<div
+  className="u-space-top u-space-bottom"
+>
+  <div
+    className="Dropdown"
+  >
+    <hx-select-control>
+      <select
+        id="contract-entity-select"
+        onChange={[Function]}
+        value=""
+      >
+        <option
+          value=""
+        >
+          -- Please Select --
+        </option>
+        <option
+          disabled={false}
+          value="ONICA_CA"
+        >
+          Onica Technologies Canada, Inc
+        </option>
+        <option
+          disabled={false}
+          value="RACK_INTL"
+        >
+          Rackspace International GMBH
+        </option>
+      </select>
+      <hx-select />
+      <label
+        className={null}
+        htmlFor="contract-entity-select"
+      >
+        <span
+          className="InputField-label"
+        >
+          Contract Entity
+        </span>
+      </label>
+    </hx-select-control>
+    <div
+      className="error"
+    />
+  </div>
+</div>
+`;
