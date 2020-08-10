@@ -197,5 +197,8 @@ hx-text-control[hx-dirty] > input[type="password"]:enabled:invalid, hx-text-cont
 .channelType-disclaimer {
     font-size: 82%;
 }
-
+.loading-icon {
+    text-align: center;
+    margin: 10%;
+}
 
