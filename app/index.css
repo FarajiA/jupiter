@@ -209,4 +209,8 @@ hx-text-control[hx-dirty] > input[type="password"]:enabled:invalid, hx-text-cont
     text-align: center;
 }
 
+.loading-icon {
+    text-align: center;
+    margin: 10%;
+}
 
