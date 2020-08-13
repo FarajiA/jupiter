@@ -63,5 +63,11 @@
   },
   "username.symbolRestriction" : {
     "translation" : "Username must not include these special character: %"
+  },
+  "error.unknown.header" : {
+    "translation" : "Unknown Error"
+  },
+  "input.empty": {
+    "translation" : "Empty"
   }
 }
