@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 const UserPermissionAlert = (props) => {
   const { t } = useTranslation();
   const submit = () => {
-    window.open('https://one.rackspace.com/display/manpubcld/Invoice+Sign+Up+Process', '_blank');
+    window.open('https://one.rackspace.com/display/IDPLAT/Jupiter+-+Internal+Cart', '_blank');
   };
   return (
     <Alert

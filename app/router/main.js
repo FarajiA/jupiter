@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import AppProvider from '../providers/AppProvider';
+import AppProvider from '../containers/AppContainer';
 
 const Routes = () => (
   <div className="jupiter-wrapper u-flex-grow">

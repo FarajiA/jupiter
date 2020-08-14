@@ -4,9 +4,9 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { checkUserRoles } from '../actions/authInfo/checkRoles';
-import { App } from '../containers/App';
+import { App } from './App';
 
-export class AppProvider extends React.Component {
+export class AppContainer extends React.Component {
   componentDidMount() {
     this.props.checkRoles();
   }
@@ -19,7 +19,7 @@ export class AppProvider extends React.Component {
   }
 }
 
-AppProvider.propTypes = {
+AppContainer.propTypes = {
   t: PropTypes.func.isRequired,
   checkRoles: PropTypes.func.isRequired,
   roles: PropTypes.shape({
@@ -43,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AppProvider)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AppContainer)));

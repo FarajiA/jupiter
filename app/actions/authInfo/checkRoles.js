@@ -12,7 +12,6 @@ export function checkUserRoles(username) {
   const endpoint = 'signups/invoice';
   const req = { dummykey: 'dummyValue' };
   return (dispatch) => {
-    // dispatch(checkRolesPending());
     return postSignup(req, endpoint)
       .then((response) => {
         dispatch(checkRolesSuccess(true));

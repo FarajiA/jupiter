@@ -1,6 +1,6 @@
 import React from 'react';
 import enzyme from 'enzyme';
-import { AppProvider } from './AppProvider';
+import { AppContainer } from './AppContainer';
 import { t } from '../../test/i18n/mocks';
 
 describe('App', () => {
@@ -14,7 +14,7 @@ describe('App', () => {
       authorized: true
     }
   };
-  const shallow = (props) => enzyme.shallow(<AppProvider {...defaultProps} {...props} />);
+  const shallow = (props) => enzyme.shallow(<AppContainer {...defaultProps} {...props} />);
   test('renders the App', () => {
     const wrapper = shallow();
     expect(wrapper.find('App')).toHaveLength(1);
