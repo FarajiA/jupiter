@@ -5,14 +5,14 @@ const { t } = global;
 describe('CountrySelect', () => {
   const getCountries = jest.fn();
   const getCountry = jest.fn();
-  const clearState = jest.fn();
+  const clearBillingState = jest.fn();
   const clearContractEntity = jest.fn();
   const defaultProps = {
     countries: {},
     prevSelectedCountry: 'CA',
     getCountries,
     getCountry,
-    clearState,
+    clearBillingState,
     clearContractEntity,
     t
   };
@@ -61,7 +61,7 @@ describe('CountrySelect', () => {
     };
     const wrapper = mounted();
     wrapper.find('select').simulate('change', event);
-    expect(clearState).toHaveBeenCalled();
+    expect(clearBillingState).toHaveBeenCalled();
     expect(clearContractEntity).toHaveBeenCalled();
     expect(getCountry).toHaveBeenCalledWith('US');
   });

@@ -15,7 +15,7 @@ describe('UserInfoForm', () => {
     signUp: signupMock,
     pending: false,
     result: true,
-    clearResult: jest.fn(),
+    resetReduxState: jest.fn(),
     history: {
       push: pushMock
     },

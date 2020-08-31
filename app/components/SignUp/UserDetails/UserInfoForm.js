@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { withTranslation } from 'react-i18next';
 import { formatRequest } from '../../../../utils/signup';
-import { clearResult, submitUserData } from '../../../actions/signUpUser';
+import { submitUserData } from '../../../actions/signUpUser';
+import { resetReduxState } from '../../../actions/resetReduxState';
 import SubmissionModal from '../SubmissionModal';
 import Button from '../../helix/buttons/Button';
 import Submit from '../../helix/buttons/Submit';
@@ -19,7 +20,7 @@ export class UserInfoForm extends React.Component {
   };
 
   closeModal = () => {
-    this.props.clearResult();
+    this.props.resetReduxState();
     this.props.history.push('/');
   };
 
@@ -61,7 +62,7 @@ export class UserInfoForm extends React.Component {
 UserInfoForm.propTypes = {
   t: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  clearResult: PropTypes.func.isRequired,
+  resetReduxState: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   result: PropTypes.bool.isRequired,
   pending: PropTypes.bool.isRequired,
@@ -82,8 +83,8 @@ const mapDispatchToProps = (dispatch) => {
     signUp: (value) => {
       dispatch(submitUserData(value));
     },
-    clearResult: (value) => {
-      dispatch(clearResult(value));
+    resetReduxState: (value) => {
+      dispatch(resetReduxState(value));
     }
   };
 };
