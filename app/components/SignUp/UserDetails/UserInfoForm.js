@@ -14,13 +14,20 @@ import { FormSection, reduxForm } from 'redux-form';
 import { asyncValidate, validateUser } from '../../../validators';
 
 export class UserInfoForm extends React.Component {
+  state = {
+    open: false
+  };
+
   handleSubmit = (values) => {
     const toSubmit = formatRequest(values);
     this.props.signUp(toSubmit);
+    this.setState({ open: true });
   };
 
   closeModal = () => {
-    this.props.resetReduxState();
+    if (this.props.success) {
+      this.props.resetReduxState();
+    }
     this.props.history.push('/');
   };
 
@@ -53,7 +60,7 @@ export class UserInfoForm extends React.Component {
             </div>
           </div>
         </form>
-        <SubmissionModal openModal={result} hideModal={this.closeModal} />
+        {result && <SubmissionModal open={this.state.open} hideModal={this.closeModal} />}
       </div>
     );
   }
@@ -63,6 +70,7 @@ UserInfoForm.propTypes = {
   t: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   resetReduxState: PropTypes.func.isRequired,
+  success: PropTypes.bool.isRequired,
   signUp: PropTypes.func.isRequired,
   result: PropTypes.bool.isRequired,
   pending: PropTypes.bool.isRequired,
@@ -73,6 +81,7 @@ UserInfoForm.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    success: state.signUpResponse.success,
     result: !!(!state.signUpResponse.pending && (state.signUpResponse.success || state.signUpResponse.error)),
     pending: state.signUpResponse.pending
   };

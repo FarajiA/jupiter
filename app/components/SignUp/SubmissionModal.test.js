@@ -7,11 +7,10 @@ describe('SubmissionModal', () => {
   let wrapper;
   const defaultProps = {
     success: false,
-    openModal: true,
+    open: true,
     errorCode: 400,
     errorMessage: 'Invalid Password',
     t,
-    pending: false,
     username: 'user-1',
     accountname: 'acct-1',
     ddi: '1234'
@@ -76,9 +75,5 @@ describe('SubmissionModal', () => {
     expect(wrappedError.find('p').text()).toEqual(
       'There was an error processing your request: test message'
     );
-  });
-  test('it returns empty if pending is true', () => {
-    const wrappedError = shallow(<SubmissionModal {...defaultProps} openModal={false} />);
-    expect(wrappedError.find('.submission-modal').text()).toEqual('');
   });
 });
