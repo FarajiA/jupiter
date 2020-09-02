@@ -4,10 +4,10 @@ import { AppContainer } from './AppContainer';
 import { t } from '../../test/i18n/mocks';
 
 describe('App', () => {
-  const mockCheckRoles = jest.fn();
+  const mockValidateRoles = jest.fn();
   const defaultProps = {
     t,
-    checkRoles: mockCheckRoles,
+    validateRoles: mockValidateRoles,
     roles: {
       pending: false,
       success: true,
@@ -18,6 +18,6 @@ describe('App', () => {
   test('renders the App', () => {
     const wrapper = shallow();
     expect(wrapper.find('App')).toHaveLength(1);
-    expect(mockCheckRoles).toHaveBeenCalled();
+    expect(mockValidateRoles).toHaveBeenCalled();
   });
 });

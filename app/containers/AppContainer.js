@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import { checkUserRoles } from '../actions/authInfo/checkRoles';
+import { validateUserRoles } from '../actions/authInfo/validateRoles';
 import { App } from './App';
 
 export class AppContainer extends React.Component {
   componentDidMount() {
-    this.props.checkRoles();
+    this.props.validateRoles();
   }
 
   render() {
@@ -21,7 +21,7 @@ export class AppContainer extends React.Component {
 
 AppContainer.propTypes = {
   t: PropTypes.func.isRequired,
-  checkRoles: PropTypes.func.isRequired,
+  validateRoles: PropTypes.func.isRequired,
   roles: PropTypes.shape({
     pending: PropTypes.bool.isRequired,
     success: PropTypes.bool.isRequired,
@@ -37,8 +37,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkRoles: () => {
-      return dispatch(checkUserRoles());
+    validateRoles: () => {
+      return dispatch(validateUserRoles());
     }
   };
 };

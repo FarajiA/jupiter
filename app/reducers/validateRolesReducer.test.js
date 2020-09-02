@@ -1,7 +1,7 @@
-import checkRolesReducer, { INITIAL_STATE } from './checkRolesReducer';
+import checkRolesReducer, { INITIAL_STATE } from './validateRolesReducer';
 import {
   CHECK_ROLES_SUCCESS
-} from '../actions/authInfo/checkRoles';
+} from '../actions/authInfo/validateRoles';
 
 describe('reducers/checkUsernameReducer', () => {
   test('it should return the initial state', () => {

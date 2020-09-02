@@ -1,6 +1,6 @@
 import {
   CHECK_ROLES_SUCCESS
-} from '../actions/authInfo/checkRoles';
+} from '../actions/authInfo/validateRoles';
 
 export const INITIAL_STATE = {
   pending: true,
