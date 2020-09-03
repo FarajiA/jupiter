@@ -17,7 +17,7 @@ export class CountrySelect extends React.Component {
     this.props.prevSelectedCountry === 'CA'
     && e.target.value !== 'CA'
     && this.props.clearContractEntity();
-    this.props.clearState();
+    this.props.clearBillingState();
     this.props.getCountry(e.target.value);
   }
 
@@ -53,7 +53,7 @@ CountrySelect.propTypes = {
   prevSelectedCountry: PropTypes.string,
   getCountries: PropTypes.func.isRequired,
   getCountry: PropTypes.func.isRequired,
-  clearState: PropTypes.func.isRequired,
+  clearBillingState: PropTypes.func.isRequired,
   clearContractEntity: PropTypes.func.isRequired
 };
 
@@ -72,7 +72,7 @@ const mapDispatchToProps = (dispatch) => {
     getCountry: (countryCode) => {
       dispatch(getCountry(countryCode));
     },
-    clearState: () => {
+    clearBillingState: () => {
       dispatch(change('signUp', 'billingInfo.address.state', ''));
     },
     clearContractEntity: () => {

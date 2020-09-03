@@ -1,5 +1,6 @@
 import getCountryReducer, { INITIAL_STATE } from './getCountryReducer';
 import { GET_COUNTRY_PENDING, GET_COUNTRY_SUCCESS, GET_COUNTRY_FAILURE } from '../actions/address/getCountry';
+import { RESET_STATE } from '../actions/resetReduxState';
 
 describe('reducers/checkUsernameReducer', () => {
   test('it should return the initial state', () => {
@@ -51,5 +52,13 @@ describe('reducers/checkUsernameReducer', () => {
       error,
       success: false
     });
+  });
+
+  test('it should handle RESET_STATE', () => {
+    expect(
+      getCountryReducer([], {
+        type: RESET_STATE
+      })
+    ).toEqual(INITIAL_STATE);
   });
 });

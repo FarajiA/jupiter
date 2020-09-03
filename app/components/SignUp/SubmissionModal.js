@@ -15,7 +15,11 @@ export class SubmissionModal extends React.Component {
     };
     if (success) {
       modalContent.header = t('common:create.status.success');
-      modalContent.message = t('account:user.status.create.success', { username, accountname, ddi });
+      modalContent.message = t('account:user.status.create.success', {
+        username,
+        accountname,
+        ddi
+      });
     } else {
       modalContent.header = t('validation:error.header');
       switch (errorCode) {
@@ -41,15 +45,11 @@ export class SubmissionModal extends React.Component {
     return modalContent;
   };
 
-  onClose = () => {
-    this.props.hideModal();
-  };
-
   returnModal = () => {
-    const { t, hideModal } = this.props;
+    const { t, hideModal, open } = this.props;
     const message = this.responseMessage();
     return (
-      <Modal isOpen onClose={hideModal}>
+      <Modal isOpen={open} onClose={hideModal}>
         <Modal.Header>
           <h1>{message.header}</h1>
         </Modal.Header>
@@ -69,10 +69,9 @@ export class SubmissionModal extends React.Component {
   };
 
   render() {
-    const { openModal } = this.props;
     return (
       <div className="submission-modal">
-        {openModal ? this.returnModal() : null}
+        {this.returnModal()}
       </div>
     );
   }
@@ -92,7 +91,7 @@ const mapStateToProps = (state) => {
 
 SubmissionModal.propTypes = {
   success: PropTypes.bool,
-  openModal: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
   username: PropTypes.string,
   accountname: PropTypes.string,
   ddi: PropTypes.string,

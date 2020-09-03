@@ -1,5 +1,6 @@
 import listCountriesReducer, { INITIAL_STATE } from './listCountriesReducer';
 import { GET_COUNTRIES_PENDING, GET_COUNTRIES_SUCCESS, GET_COUNTRIES_FAILURE } from '../actions/address/listCountries';
+import { RESET_STATE } from '../actions/resetReduxState';
 
 describe('reducers/checkUsernameReducer', () => {
   test('it should return the initial state', () => {
@@ -49,5 +50,13 @@ describe('reducers/checkUsernameReducer', () => {
       error,
       success: false
     });
+  });
+
+  test('it should handle RESET_STATE', () => {
+    expect(
+      listCountriesReducer([], {
+        type: RESET_STATE
+      })
+    ).toEqual(INITIAL_STATE);
   });
 });

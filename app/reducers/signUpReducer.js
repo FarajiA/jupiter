@@ -1,4 +1,5 @@
-import { SUBMIT_PENDING, SUBMIT_SUCCESS, SUBMIT_FAILURE, CLEAR_RESULT } from '../actions/signUpUser';
+import { SUBMIT_PENDING, SUBMIT_SUCCESS, SUBMIT_FAILURE } from '../actions/signUpUser';
+import { RESET_STATE } from '../actions/resetReduxState';
 
 export const INITIAL_STATE = {
   username: null,
@@ -32,15 +33,8 @@ export default function fetchReducer(state = INITIAL_STATE, action) {
         pending: false,
         error: action.error
       };
-    case CLEAR_RESULT:
-      return {
-        ...state,
-        username: null,
-        accountname: null,
-        pending: false,
-        success: false,
-        error: null
-      };
+    case RESET_STATE:
+      return INITIAL_STATE;
     default:
       return state;
   }
