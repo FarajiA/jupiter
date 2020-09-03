@@ -4,8 +4,9 @@ import { App } from './App';
 import { t } from '../../test/i18n/mocks';
 
 describe('App', () => {
-  const shallow = (props) => enzyme.shallow(<App t={t} {...props} />);
-  test('renders the document title', () => {
+  const mockValidateRoles = jest.fn();
+  const shallow = (props) => enzyme.shallow(<App t={t} validateRoles={mockValidateRoles} {...props} />);
+  test('renders the document title and makes a call to validate roles', () => {
     const props = {
       roles: {
         pending: false,
@@ -16,6 +17,7 @@ describe('App', () => {
     expect(document.title).toEqual('');
     shallow(props);
     expect(document.title).toEqual('Rackspace Invoice Sign Up');
+    expect(mockValidateRoles).toHaveBeenCalled();
   });
   test('renders the loading page', () => {
     const props = {

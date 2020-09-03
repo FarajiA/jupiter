@@ -5,12 +5,16 @@ import Footer from '../components/helix/Footer';
 import SignUpSection from './SignUpSection';
 import SignupRoutes from '../router/signup';
 import Status from '../components/helix/Status';
+import { validateUserRoles } from '../actions/authInfo/validateRoles';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 import UserPermissionAlert from '../components/alert/UserPermissionAlert';
 
 export class App extends React.Component {
   componentDidMount() {
     const { t } = this.props;
     window.document.title = t('common:headers.main.signUp');
+    this.props.validateRoles();
   }
 
   render() {
@@ -26,26 +30,23 @@ export class App extends React.Component {
                   size="xlarge"
                   type="page"
                   loading={roles.pending}
-                />
-                {
-                  !roles.pending && (
-                    <div>
-                      <div className="SignUp-header">
-                        <h1>{t('common:signUp.headers.main')}</h1>
-                        <hr />
-                      </div>
-                      {
-                      !roles.authorized && roles.success
+                >
+                  <div>
+                    <div className="SignUp-header">
+                      <h1>{t('common:signUp.headers.main')}</h1>
+                      <hr />
+                    </div>
+                    {
+                      !roles.authorized
                         ? <UserPermissionAlert />
                         : (
                           <SignUpSection>
                             <SignupRoutes />
                           </SignUpSection>
                         )
-                        }
-                    </div>
-                  )
-                }
+                  }
+                  </div>
+                </Status>
               </div>
             </main>
           </div>
@@ -58,6 +59,7 @@ export class App extends React.Component {
 
 App.propTypes = {
   t: PropTypes.func.isRequired,
+  validateRoles: PropTypes.func.isRequired,
   roles: PropTypes.shape({
     pending: PropTypes.bool.isRequired,
     success: PropTypes.bool.isRequired,
@@ -65,4 +67,19 @@ App.propTypes = {
   })
 };
 
-export default withTranslation()(App);
+const mapStateToProps = (state) => {
+  return {
+    roles: state.roles
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    validateRoles: () => {
+      return dispatch(validateUserRoles());
+    }
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));
+// export default withTranslation()(App);

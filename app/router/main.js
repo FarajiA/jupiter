@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import AppProvider from '../containers/AppContainer';
+import App from '../containers/App';
 
 const Routes = () => (
   <div className="jupiter-wrapper u-flex-grow">
     <Router basename="/racker/jupiter">
-      <Route path="/" component={AppProvider} />
+      <Route path="/" component={App} />
     </Router>
   </div>
 );

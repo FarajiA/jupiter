@@ -1,24 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserPermissionAlert UserPermissionAlert 1`] = `
-<div>
-  <hx-alert
-    class="u-space-top"
-    cta="View Docs"
-    onDismiss={[Function]}
-    onSubmit={[Function]}
-    persist="true"
-    show={true}
-    static={true}
-    type="error"
-  >
-     
-    <p>
-      You do not have the required permissions to access this resource.
-    </p>
-    <small>
-      For information on how to request access, refer to the documentation.
-    </small>
-  </hx-alert>
-</div>
+<hx-alert
+  class="u-space-top"
+  cta="View Docs"
+  persist={true}
+  show={true}
+  static={true}
+  type="error"
+>
+  <p>
+    You do not have the required permissions to access this resource.
+  </p>
+  <small>
+    For information on how to request access, refer to the documentation.
+  </small>
+</hx-alert>
 `;

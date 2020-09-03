@@ -1,5 +1,5 @@
 import React from 'react';
-import Alert from '../helix/status/Alert';
+import { Alert } from '@helix-design-system/helix-react';
 import { useTranslation } from 'react-i18next';
 
 const UserPermissionAlert = (props) => {
@@ -13,7 +13,7 @@ const UserPermissionAlert = (props) => {
       type="error"
       static
       show
-      persist="true"
+      persist
       cta={t('account:user.tip.viewDocumentation')}
       onSubmit={submit}
     >
