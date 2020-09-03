@@ -4,6 +4,7 @@ import {
   CHECK_USERNAME_SUCCESS,
   CHECK_USERNAME_FAILURE
 } from '../actions/userInfo/checkUsername';
+import { RESET_STATE } from '../actions/resetReduxState';
 
 describe('reducers/checkUsernameReducer', () => {
   test('it should return the initial state', () => {
@@ -48,5 +49,13 @@ describe('reducers/checkUsernameReducer', () => {
       success: false,
       username: 'john.doe'
     });
+  });
+
+  test('it should handle RESET_STATE', () => {
+    expect(
+      checkUsernameReducer([], {
+        type: RESET_STATE
+      })
+    ).toEqual(INITIAL_STATE);
   });
 });

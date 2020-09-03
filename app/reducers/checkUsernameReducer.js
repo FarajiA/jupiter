@@ -3,6 +3,7 @@ import {
   CHECK_USERNAME_SUCCESS,
   CHECK_USERNAME_PENDING
 } from '../actions/userInfo/checkUsername';
+import { RESET_STATE } from '../actions/resetReduxState';
 
 export const INITIAL_STATE = {
   username: '',
@@ -35,6 +36,8 @@ export default function checkUsernameReducer(state = INITIAL_STATE, action) {
         username: action.username,
         error: action.error
       };
+    case RESET_STATE:
+      return INITIAL_STATE;
     default:
       return state;
   }

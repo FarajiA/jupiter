@@ -14,7 +14,7 @@ describe('UserInfo', () => {
     checkIfExists: checkIfExistsMock,
     firstName: '',
     lastName: '',
-    clearResult: jest.fn(),
+    resetReduxState: jest.fn(),
     t
   };
 

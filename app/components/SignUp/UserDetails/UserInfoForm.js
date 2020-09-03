@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { withTranslation } from 'react-i18next';
 import { formatRequest } from '../../../../utils/signup';
-import { clearResult, submitUserData } from '../../../actions/signUpUser';
+import { submitUserData } from '../../../actions/signUpUser';
+import { resetReduxState } from '../../../actions/resetReduxState';
 import SubmissionModal from '../SubmissionModal';
 import Button from '../../helix/buttons/Button';
 import Submit from '../../helix/buttons/Submit';
@@ -13,13 +14,20 @@ import { FormSection, reduxForm } from 'redux-form';
 import { asyncValidate, validateUser } from '../../../validators';
 
 export class UserInfoForm extends React.Component {
+  state = {
+    open: false
+  };
+
   handleSubmit = (values) => {
     const toSubmit = formatRequest(values);
     this.props.signUp(toSubmit);
+    this.setState({ open: true });
   };
 
   closeModal = () => {
-    this.props.clearResult();
+    if (this.props.success) {
+      this.props.resetReduxState();
+    }
     this.props.history.push('/');
   };
 
@@ -52,7 +60,7 @@ export class UserInfoForm extends React.Component {
             </div>
           </div>
         </form>
-        <SubmissionModal openModal={result} hideModal={this.closeModal} />
+        {result && <SubmissionModal open={this.state.open} hideModal={this.closeModal} />}
       </div>
     );
   }
@@ -61,7 +69,8 @@ export class UserInfoForm extends React.Component {
 UserInfoForm.propTypes = {
   t: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  clearResult: PropTypes.func.isRequired,
+  resetReduxState: PropTypes.func.isRequired,
+  success: PropTypes.bool.isRequired,
   signUp: PropTypes.func.isRequired,
   result: PropTypes.bool.isRequired,
   pending: PropTypes.bool.isRequired,
@@ -72,6 +81,7 @@ UserInfoForm.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    success: state.signUpResponse.success,
     result: !!(!state.signUpResponse.pending && (state.signUpResponse.success || state.signUpResponse.error)),
     pending: state.signUpResponse.pending
   };
@@ -82,8 +92,8 @@ const mapDispatchToProps = (dispatch) => {
     signUp: (value) => {
       dispatch(submitUserData(value));
     },
-    clearResult: (value) => {
-      dispatch(clearResult(value));
+    resetReduxState: (value) => {
+      dispatch(resetReduxState(value));
     }
   };
 };

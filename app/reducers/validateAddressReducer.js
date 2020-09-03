@@ -4,6 +4,7 @@ import {
   VALIDATE_ADDRESS_FAILURE,
   POST_ADDRESS_FAILURE
 } from '../actions/address/validateAddress';
+import { RESET_STATE } from '../actions/resetReduxState';
 
 export const INITIAL_STATE = {
   pending: false,
@@ -40,6 +41,8 @@ export default function validateAddressReducer(state = INITIAL_STATE, action) {
         valid: action.valid,
         errorMsg: action.error
       };
+    case RESET_STATE:
+      return INITIAL_STATE;
     default:
       return state;
   }

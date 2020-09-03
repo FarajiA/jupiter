@@ -5,6 +5,7 @@ import {
   VALIDATE_ADDRESS_FAILURE,
   POST_ADDRESS_FAILURE
 } from '../actions/address/validateAddress';
+import { RESET_STATE } from '../actions/resetReduxState';
 
 describe('reducers/validateAddressReducer', () => {
   test('it should return the initial state', () => {
@@ -86,5 +87,13 @@ describe('reducers/validateAddressReducer', () => {
         errorMsg: { error }
       }
     );
+  });
+
+  test('it should handle RESET_STATE', () => {
+    expect(
+      validateAddressReducer([], {
+        type: RESET_STATE
+      })
+    ).toEqual(INITIAL_STATE);
   });
 });
