@@ -159,5 +159,14 @@
   },
   "user.tips.username.generate" : {
     "translation" : "姓または名が変更されると、新しいユーザー名が自動的に生成されます。"
+  },
+  "user.tip.invalidAccountPermission" : {
+    "translation" : "このリソースにアクセスするために必要な権限がありません。"
+  },
+  "user.tip.viewDocumentation" : {
+    "translation" : "ドキュメントの表示"
+  },
+  "actions.jupiter.goToProductGuide" : {
+    "translation" : "アクセス権限のリクエスト方法については、マニュアルを参照してください。"
   }
 }

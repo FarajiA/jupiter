@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const readlineSync = require('readline-sync');
@@ -21,6 +22,11 @@ if (!portalSessionId) {
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
+  plugins: [
+    new webpack.DefinePlugin({
+      PRODUCTION: !process.argv.includes('--staging')
+    })
+  ],
   devServer: {
     contentBase: path.join(__dirname, './build/'),
     port: 3000,

@@ -63,5 +63,11 @@
   },
   "username.symbolRestriction" : {
     "translation" : "ユーザー名に次の特殊文字を含めることはできません：%"
+  },
+  "error.unknown.header" : {
+    "translation" : "不明なエラー"
+  },
+  "input.empty" : {
+    "translation" : "空欄"
   }
 }

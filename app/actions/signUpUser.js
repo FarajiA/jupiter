@@ -34,7 +34,6 @@ export const submitFailure = (errorResponse) => {
 export function submitUserData(values) {
   const username = _.get(values, ['contacts', 'contact', 0, 'user', 'username']);
   const accountName = _.get(values, ['accountName']);
-
   return (dispatch) => {
     dispatch(submitPending(values, username, accountName));
     const endpoint = 'signups/invoice';

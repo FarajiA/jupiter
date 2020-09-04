@@ -14,11 +14,18 @@ jest.mock('axios');
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 describe('routes/signup', () => {
+  window.PORTAL_DATA = { environment: 'development' };
+  const mockValidateRoles = jest.fn();
+  const roles = {
+    pending: false,
+    success: true,
+    authorized: true
+  };
   const mounted = (route) => {
     return mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={[route]}>
-          <App t={t} />
+          <App t={t} validateRoles={mockValidateRoles} roles={roles} />
         </MemoryRouter>
       </Provider>
     );
