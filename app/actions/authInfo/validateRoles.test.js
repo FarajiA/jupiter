@@ -7,6 +7,7 @@ const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
 describe('actions/checkRoles', () => {
+  window.PORTAL_DATA = { environment: 'development' };
   test('it should create an action for success', () => {
     const expectedAction = {
       type: actions.CHECK_ROLES_SUCCESS,

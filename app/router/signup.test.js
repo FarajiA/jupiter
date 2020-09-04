@@ -14,6 +14,7 @@ jest.mock('axios');
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 describe('routes/signup', () => {
+  window.PORTAL_DATA = { environment: 'development' };
   const mockValidateRoles = jest.fn();
   const roles = {
     pending: false,

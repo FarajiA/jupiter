@@ -4,6 +4,7 @@ import { App } from './App';
 import { t } from '../../test/i18n/mocks';
 
 describe('App', () => {
+  window.PORTAL_DATA = { environment: 'development' };
   const mockValidateRoles = jest.fn();
   const shallow = (props) => enzyme.shallow(<App t={t} validateRoles={mockValidateRoles} {...props} />);
   test('renders the document title and makes a call to validate roles', () => {

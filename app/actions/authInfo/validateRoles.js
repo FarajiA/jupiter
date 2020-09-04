@@ -12,18 +12,9 @@ export const validateRolesSuccess = (authorized) => {
 
 export function validateUserRoles(username) {
   const endpoint = '/api/identity-internal/v2.0/tokens/';
-  let reqRole;
-  if (window.location.host === 'localhost:3000') {
-    // eslint-disable-next-line no-undef
-    reqRole = (ENV_URL === 'https://portal.rackspace.com/')
-      ? 'signup_service_create_invoice_signup_prod'
-      : 'signup_service_create_invoice_signup_staging';
-  } else {
-    reqRole = (window.location.host === 'portal.rackspace.com')
-      ? 'signup_service_create_invoice_signup_prod'
-      : 'signup_service_create_invoice_signup_staging';
-  }
-  console.log(reqRole);
+  const reqRole = window.PORTAL_DATA.environment === 'production'
+    ? 'signup_service_create_invoice_signup_prod'
+    : 'signup_service_create_invoice_signup_staging';
   return (dispatch) => {
     return axios.get(endpoint, { axiosParameters })
       .then((response) => {

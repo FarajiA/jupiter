@@ -12,6 +12,11 @@ import UserPermissionAlert from '../components/alert/UserPermissionAlert';
 
 export class App extends React.Component {
   componentDidMount() {
+    if (!window.PORTAL_DATA) {
+      // eslint-disable-next-line no-undef
+      const env = PRODUCTION ? 'production' : 'staging';
+      window.PORTAL_DATA = { environment: env };
+    }
     const { t } = this.props;
     window.document.title = t('common:headers.main.signUp');
     this.props.validateRoles();
@@ -82,4 +87,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));
-// export default withTranslation()(App);

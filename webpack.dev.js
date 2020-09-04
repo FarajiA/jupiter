@@ -24,7 +24,7 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      ENV_URL: JSON.stringify(PORTAL_URL)
+      PRODUCTION: !process.argv.includes('--staging')
     })
   ],
   devServer: {
