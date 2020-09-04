@@ -1,4 +1,5 @@
 import { GET_COUNTRIES_PENDING, GET_COUNTRIES_SUCCESS, GET_COUNTRIES_FAILURE } from '../actions/address/listCountries';
+import { RESET_STATE } from '../actions/resetReduxState';
 
 export const INITIAL_STATE = {
   countries: {},
@@ -30,6 +31,8 @@ export default function checkCountriesReducer(state = INITIAL_STATE, action) {
         success: false,
         error: action.error
       };
+    case RESET_STATE:
+      return INITIAL_STATE;
     default:
       return state;
   }

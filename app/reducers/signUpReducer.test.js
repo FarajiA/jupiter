@@ -1,7 +1,12 @@
 import signUpReducer, { INITIAL_STATE } from './signUpReducer';
 import { SUBMIT_FAILURE, SUBMIT_SUCCESS, SUBMIT_PENDING } from '../actions/signUpUser';
+import { RESET_STATE } from '../actions/resetReduxState';
 
 describe('reducers/signUpReducer', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test('it should return the initial state', () => {
     expect(signUpReducer(undefined, {})).toEqual(INITIAL_STATE);
   });
@@ -50,5 +55,13 @@ describe('reducers/signUpReducer', () => {
         error
       }
     );
+  });
+
+  test('it should handle RESET_STATE', () => {
+    expect(
+      signUpReducer([], {
+        type: RESET_STATE
+      })
+    ).toEqual(INITIAL_STATE);
   });
 });
