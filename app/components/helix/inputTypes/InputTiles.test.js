@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import * as enzyme from 'enzyme';
 import InputTiles from './InputTiles';
 import { t } from '../../../../test/i18n/mocks';
 
 
 describe('InputTiles', () => {
-  let wrapper;
   const mockHandleChannelUpdate = jest.fn();
   const onChangeHandler = jest.fn();
   const mockDisclaimer = <p>tiles-disclaimer</p>;
@@ -17,7 +17,7 @@ describe('InputTiles', () => {
       name: 'channelType',
       onChange: onChangeHandler
     },
-    size: 'hxMd',
+    size: 'medium',
     handleChannelUpdate: mockHandleChannelUpdate,
     selectedValue: '',
     options: [{
@@ -35,9 +35,7 @@ describe('InputTiles', () => {
     t
   };
 
-  beforeEach(() => {
-    wrapper = shallow(<InputTiles {...defaultProps} />);
-  });
+  const mount = (props = {}) => enzyme.mount(<InputTiles {...defaultProps} {...props} />);
 
   test('it renders with appropriate props', () => {
     const component = renderer.create(<InputTiles {...defaultProps} />);
@@ -46,12 +44,24 @@ describe('InputTiles', () => {
   });
 
   test('it renders multiple options based on options prop', () => {
-    const options = wrapper.find('ChoiceTile');
+    const options = mount().find('ChoiceTile');
     expect(options.length).toEqual(2);
   });
 
   test('it renders the disclaimer', () => {
-    const options = wrapper.find('#tiles-desc').find('p');
+    const options = mount().find('#tiles-desc').find('p');
     expect(options.text()).toEqual('tiles-disclaimer');
+  });
+
+  test('when input value matches option value item is checked', () => {
+    const options = mount({ input: { value: 'value_2', onChange: jest.fn(), name: 'foo' } })
+      .find('input').map((el) => el.prop('checked'));
+    expect(options).toEqual([null, true]);
+  });
+
+  test('when input value matches no option value item is not checked', () => {
+    const options = mount({ input: { value: 'stuff', onChange: jest.fn(), name: 'foo' } })
+      .find('input').map((el) => el.prop('checked'));
+    expect(options).toEqual([null, null]);
   });
 });

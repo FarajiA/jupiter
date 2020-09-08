@@ -1,31 +1,34 @@
 import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-
+import { ChoiceTile } from '@helix-design-system/helix-react';
 import Error from '../Error';
-import ChoiceTile from './ChoiceTile';
 
 const InputTiles = (props) => {
-  const options = _.map(props.options, (item, index) => {
+  const choiceTiles = _.map(props.options, (item) => {
     return (
       <ChoiceTile
-        className="hxCol hxSpan-4-xs"
         {...props.input}
         size={props.size}
         key={item.value}
-        item={item}
-        handleUpdate={props.handleChannelUpdate}
-        selectedValue={props.selectedValue}
-      />
+        title={item.label}
+        checked={item.value === props.input.value}
+        value={item.value}
+        className="hxCol hxSpan-4-xs"
+      >
+        <header className="hxSubdued"><i><small>{item.subheader}</small></i></header>
+        <p className="channelType-section-desc">{item.description}</p>
+      </ChoiceTile>
     );
   });
+
   return (
     <div className="hxCol hxSpan-12">
       <label htmlFor={props.id} className={props.required ? 'hxRequired' : null}>
         <span className="InputField-label">{props.label}</span>
       </label>
       <div className="hxRow channelType-fields-spacing">
-        {options}
+        {choiceTiles}
       </div>
       <Error meta={props.meta} />
 
@@ -41,7 +44,6 @@ InputTiles.propTypes = {
   size: PropTypes.string,
   id: PropTypes.string,
   handleChannelUpdate: PropTypes.func,
-  selectedValue: PropTypes.string,
   disclaimer: PropTypes.object,
   label: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),

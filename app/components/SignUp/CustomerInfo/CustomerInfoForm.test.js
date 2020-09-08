@@ -9,14 +9,12 @@ describe('CustomerInfoForm', () => {
   const clearProductMock = jest.fn();
   const clearChannelMock = jest.fn();
   const submitMock = jest.fn();
-  const mockUpdateChannel = jest.fn();
   const getCountryMock = jest.fn();
   const clearContractEntityMock = jest.fn();
   const defaultProps = {
     handleSubmit: submitMock,
     customerType: '',
     productType: '',
-    updateChannel: mockUpdateChannel,
     setAddress: setAddressMock,
     clearProduct: clearProductMock,
     getCountry: getCountryMock,
@@ -115,22 +113,5 @@ describe('CustomerInfoForm', () => {
       { children: React.cloneElement(wrapper.props().children, { ...props, customerType: 'rbu' }) }
     );
     expect(props.clearContractEntity).toBeCalledTimes(1);
-  });
-
-  test('handleChannelUpdate is invoked upon changing the channel type', () => {
-    const props = {
-      ...defaultProps,
-      productType: 'managed_vmc',
-      handleChange: jest.fn()
-    };
-    const wrapper = mountWithForm(CustomerInfoForm, { props });
-    const event = {
-      target: {
-        value: ''
-      }
-    };
-    wrapper.find('ChannelType').props().handleChannelUpdate(event);
-    wrapper.update();
-    expect(props.updateChannel).toBeCalledTimes(1);
   });
 });

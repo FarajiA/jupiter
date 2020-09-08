@@ -49,10 +49,6 @@ export class CustomerInfoForm extends React.Component {
     this.props.channelType !== ''
          && e.target.value !== 'managed_vmc'
          && this.props.clearChannel();
-  }
-
-  handleChannelUpdate = (e) => {
-    this.props.updateChannel(e.target.value);
   };
 
   render() {
@@ -64,11 +60,9 @@ export class CustomerInfoForm extends React.Component {
           <FormSection name="customerInfo">
             <CustomerType handleCustomerTypeChange={this.handleCustomerTypeChange} />
             <Product customerType={customerType} clearChannelType={this.handleCleanChannel} />
-            {
-            productType === 'managed_vmc' && (
-              <ChannelType channelType={this.props.channelType} handleChannelUpdate={this.handleChannelUpdate} />
-            )
-            }
+            {productType === 'managed_vmc' && (
+              <ChannelType channelType={this.props.channelType} />
+            )}
           </FormSection>
           <div className="NavButtons">
             <div className="hxRow">
@@ -93,7 +87,6 @@ CustomerInfoForm.propTypes = {
   productType: PropTypes.string,
   channelType: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
-  updateChannel: PropTypes.func.isRequired,
   clearChannel: PropTypes.func.isRequired,
   clearProduct: PropTypes.func.isRequired,
   setAddress: PropTypes.func.isRequired,
@@ -143,9 +136,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     clearContractEntity: () => {
       dispatch(change('signUp', 'billingInfo.contractEntity', ''));
-    },
-    updateChannel: (value) => {
-      dispatch(change('signUp', 'customerInfo.channelType', value));
     }
   };
 };

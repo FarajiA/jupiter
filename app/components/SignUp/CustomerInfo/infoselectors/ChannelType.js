@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import InputTiles from '../../../helix/inputTypes/InputTiles';
 import { ChannelTypeDisclaimer } from './ChannelTypeDisclaimer';
 
-export const ChannelType = ({ handleChannelUpdate, channelType = '' }) => {
+export const ChannelType = ({ channelType = '' }) => {
   const { t } = useTranslation();
   const email = 'vmware@rackspace.com';
 
@@ -41,7 +41,6 @@ export const ChannelType = ({ handleChannelUpdate, channelType = '' }) => {
         size="medium"
         required
         selectedValue={channelType}
-        handleChannelUpdate={handleChannelUpdate}
         disclaimer={<ChannelTypeDisclaimer footer={`${t('account:customer.tips.vmc.channeltype.alert', { email })}`} />}
       />
     </div>
@@ -49,7 +48,6 @@ export const ChannelType = ({ handleChannelUpdate, channelType = '' }) => {
 };
 
 ChannelType.propTypes = {
-  handleChannelUpdate: PropTypes.func.isRequired,
   channelType: PropTypes.string
 };
 

@@ -40,7 +40,7 @@ describe('StateSelect', () => {
   });
 
   test('Dropdown is enabled if states has a length', () => {
-    const props = { country: { states: ['test'] } };
+    const props = { country: { states: [{ 'code': 'test' }] } };
     const wrapper = mounted(props);
     expect(wrapper.find('select').prop('disabled')).toBeFalsy();
   });

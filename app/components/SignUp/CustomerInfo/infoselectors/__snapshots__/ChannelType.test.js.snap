@@ -24,9 +24,13 @@ exports[`Product it renders 1`] = `
         className="hxChoice hxCol hxSpan-4-xs"
       >
         <input
-          checked={false}
+          checked={null}
           name="channelType"
+          onBlur={[Function]}
           onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
           type="radio"
           value="Insight"
         />
@@ -59,9 +63,13 @@ exports[`Product it renders 1`] = `
         className="hxChoice hxCol hxSpan-4-xs"
       >
         <input
-          checked={false}
+          checked={null}
           name="channelType"
+          onBlur={[Function]}
           onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
           type="radio"
           value="Carahsoft"
         />
@@ -94,9 +102,13 @@ exports[`Product it renders 1`] = `
         className="hxChoice hxCol hxSpan-4-xs"
       >
         <input
-          checked={true}
+          checked={null}
           name="channelType"
+          onBlur={[Function]}
           onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
           type="radio"
           value="AWS"
         />

@@ -21,14 +21,14 @@ exports[`InputTiles it renders with appropriate props 1`] = `
       className="hxChoice hxCol hxSpan-4-xs"
     >
       <input
-        checked={false}
+        checked={null}
         name="channelType"
-        onChange={[Function]}
+        onChange={[MockFunction]}
         type="radio"
         value="value_1"
       />
       <hx-tile
-        class="undefined"
+        class="hxMd"
       >
         <hx-icon
           type="checkmark"
@@ -56,14 +56,14 @@ exports[`InputTiles it renders with appropriate props 1`] = `
       className="hxChoice hxCol hxSpan-4-xs"
     >
       <input
-        checked={false}
+        checked={null}
         name="channelType"
-        onChange={[Function]}
+        onChange={[MockFunction]}
         type="radio"
         value="value_2"
       />
       <hx-tile
-        class="undefined"
+        class="hxMd"
       >
         <hx-icon
           type="checkmark"
