@@ -14,6 +14,7 @@ describe('UserName', () => {
     error: false,
     loading: false,
     success: false,
+    hxClassNames: '',
     setUsername: setUsernameMock,
     syncErrors: {
       userInfo: {
@@ -69,13 +70,5 @@ describe('UserName', () => {
     };
     const wrapper = shallow(<UserName {...defaultProps} {...props} />);
     expect(wrapper.find('hx-icon[class="checkmark"]').length).toBeTruthy();
-  });
-
-  test('it does not render a suffix if the username does not exist', () => {
-    const props = {
-      username: ''
-    };
-    const wrapper = shallow(<UserName {...defaultProps} {...props} />);
-    expect(wrapper.find('hx-icon').length).toBeFalsy();
   });
 });
