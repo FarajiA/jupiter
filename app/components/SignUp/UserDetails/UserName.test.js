@@ -14,6 +14,7 @@ describe('UserName', () => {
     error: false,
     loading: false,
     success: false,
+    hxClassNames: '',
     setUsername: setUsernameMock,
     syncErrors: {
       userInfo: {

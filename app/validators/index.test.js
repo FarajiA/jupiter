@@ -2,6 +2,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import * as validators from './index';
 import * as axiosActions from '../../lib/axios/signupActions';
+
 const { t } = global;
 
 jest.mock('axios');
@@ -189,7 +190,8 @@ describe('validators', () => {
         customerInfo: {
           productType: ['Required'],
           customerType: ['Required']
-        } });
+        }
+      });
     });
   });
   describe('validateAddress', () => {
@@ -234,39 +236,77 @@ describe('validators', () => {
 
     test('state is required if no country prop or country data is present', () => {
       const valueProps = { address: { country: 'AF' } };
-      const props = { props: { country: '', countryData: {} }, t };
+      const props = {
+        props: {
+          country: '',
+          countryData: {}
+        },
+        t
+      };
       const result = validators.validateAddress(valueProps, props);
       expect(result.address.state).toEqual(['Required']);
     });
 
     test('state is required if no countryData is present', () => {
       const valueProps = { address: { country: 'AF' } };
-      const props = { props: { country: 'AF', countryData: {} }, t };
+      const props = {
+        props: {
+          country: 'AF',
+          countryData: {}
+        },
+        t
+      };
       const result = validators.validateAddress(valueProps, props);
       expect(result.address.state).toEqual(['Required']);
     });
 
     test('state is required if no country prop is present', () => {
       const valueProps = { address: { country: 'AF' } };
-      const props = { props: { country: '', countryData: { states: [] } }, t };
+      const props = {
+        props: {
+          country: '',
+          countryData: { states: [] }
+        },
+        t
+      };
       const result = validators.validateAddress(valueProps, props);
       expect(result.address.state).toEqual(['Required']);
     });
 
     test('state returns no error if country and countryData are present', () => {
       const valueProps = { address: { country: 'AF' } };
-      const props = { props: { country: 'AF', countryData: { states: [] } }, t };
+      const props = {
+        props: {
+          country: 'AF',
+          countryData: { states: [] }
+        },
+        t
+      };
       const result = validators.validateAddress(valueProps, props);
       expect(result.address.state).toBeUndefined();
     });
     test('zipcode is required if hasZipcode is true', () => {
-      const props = { props: { country: 'AF', countryData: { states: [] }, hasZipcode: true }, t };
+      const props = {
+        props: {
+          country: 'AF',
+          countryData: { states: [] },
+          hasZipcode: true
+        },
+        t
+      };
       const valueProps = { address: { zipcode: undefined } };
       const result = validators.validateAddress(valueProps, props);
       expect(result.address.zipcode).toEqual(['Required']);
     });
     test('zipcode is disabled if hasZipcode is false', () => {
-      const props = { props: { country: '', countryData: { states: [] }, hasZipcode: false }, t };
+      const props = {
+        props: {
+          country: '',
+          countryData: { states: [] },
+          hasZipcode: false
+        },
+        t
+      };
       const valueProps = { address: { zipcode: undefined } };
       const result = validators.validateAddress(valueProps, props);
       expect(result.address.zipcode).toEqual(undefined);
@@ -278,41 +318,119 @@ describe('validators', () => {
     });
   });
   describe('asyncValidate', () => {
-    const asyncValidateMock = (props, field) => {
-      return validators.asyncValidate(props, jest.fn(), defaultProps, field);
+    const asyncValidateMock = ({ values, asyncErrors = null, field }) => {
+      const props = {
+        ...defaultProps,
+        asyncErrors
+      };
+      return validators.asyncValidate(values, jest.fn(), props, field);
     };
-    test('returns a resolved promise if data passes', () => {
-      const getSignupData = { data: { exist: false } };
-      axios.get.mockImplementationOnce(() => Promise.resolve(getSignupData));
-      const asyncReturn = asyncValidateMock({ userInfo: { username: 'user1' } }, 'username');
-      expect(asyncReturn).toEqual(Promise.resolve({}));
+
+    afterEach(() => {
+      jest.restoreAllMocks();
     });
 
-    test('returns an error from checkUsername if checkUsername fails', () => {
-      const getSignupData = { data: { exist: true } };
+    test('returns a resolved promise if data passes', async () => {
+      const getSignupData = { data: { exist: false } };
+      const field = 'userInfo.username';
+      const values = { userInfo: { username: 'user1' } };
       axios.get.mockImplementationOnce(() => Promise.resolve(getSignupData));
-      return asyncValidateMock({ userInfo: { username: 'user1' } }, 'userInfo.username').catch((e) => {
-        expect(e).toEqual({ userInfo: { username: ['This username already exists. Please choose another one.'] } });
+      await expect(asyncValidateMock({ values, field }))
+        .toEqual(Promise.resolve({}));
+    });
+
+    describe('checkUsername', () => {
+      const field = 'userInfo.username';
+      const values = { userInfo: { username: 'user1' } };
+
+      test('returns an error from checkUsername if checkUsername fails', async () => {
+        const getSignupData = { data: { exist: true } };
+        axios.get.mockImplementationOnce(() => Promise.resolve(getSignupData));
+        await expect(asyncValidateMock({ values, field }))
+          .rejects.toEqual({ userInfo: { username: ['This username already exists. Please choose another one.'] } });
+      });
+
+      test('asyncValidateUsername merges existing password and username errors', async () => {
+        const getSignupData = { data: { exist: true } };
+        const asyncErrors = { userInfo: { password: ['password error'] } };
+        const expected = {
+          userInfo:
+            {
+              password: ['password error'],
+              username: ['This username already exists. Please choose another one.']
+            }
+        };
+        axios.get.mockImplementationOnce(() => Promise.resolve(getSignupData));
+        await expect(asyncValidateMock({ values, asyncErrors, field }))
+          .rejects.toEqual(expected);
+      });
+
+      test('calls checkUsername if field equals username key', async () => {
+        const getSignupData = { data: { exist: false } };
+        const spy = jest.spyOn(axiosActions, 'getSignup').mockResolvedValue(getSignupData);
+        await asyncValidateMock({ values, field });
+        expect(spy).toHaveBeenCalledWith({ username: 'user1' }, 'cloud-username-check');
       });
     });
 
-    test('calls checkUsername if field equals username key', () => {
-      const getSignupData = { data: { exist: false } };
-      const spy = jest.spyOn(axiosActions, 'getSignup').mockResolvedValue(getSignupData);
-      asyncValidateMock({ userInfo: { username: 'user1' } }, 'userInfo.username');
-      expect(spy).toHaveBeenCalledWith({ username: 'user1' }, 'cloud-username-check');
-    });
+    describe('checkPassword', () => {
+      const field = 'userInfo.password';
+      const values = { userInfo: { password: 'Password123!' } };
+      test('calls checkPassword if field equals password key', async () => {
+        const postSignupData = {
+          data: {
+            valid: false,
+            blacklistCheck: 'PASSED'
+          }
+        };
+        const spy = jest.spyOn(axiosActions, 'postSignup').mockResolvedValue(postSignupData);
+        await asyncValidateMock({ values, field });
+        expect(spy).toHaveBeenCalledWith({ password: 'Password123!' }, 'validation/password');
+      });
 
-    test('calls checkPassword if field equals password key', () => {
-      const postSignupData = {
-        data: {
-          valid: false,
-          blacklistCheck: 'PASSED'
-        }
-      };
-      const spy = jest.spyOn(axiosActions, 'postSignup').mockResolvedValue(postSignupData);
-      asyncValidateMock({ userInfo: { password: 'Password123!' } }, 'userInfo.password');
-      expect(spy).toHaveBeenCalledWith({ password: 'Password123!' }, 'validation/password');
+      test('returns error if valid is true and blacklistCheck is failed', async () => {
+        const postSignupData = {
+          data: {
+            valid: true,
+            blacklistCheck: 'FAILED'
+          }
+        };
+        axios.post.mockImplementationOnce(() => Promise.resolve(postSignupData));
+        await expect(asyncValidateMock({ values, field })).rejects.toEqual(
+          { userInfo: { password: ['This password is too easy to guess. Please choose another password.'] } }
+        );
+      });
+
+      test('returns resolved promise if valid is and blackListCheck does not equal FAILED', async () => {
+        const postSignupData = {
+          data: {
+            valid: false,
+            blacklistCheck: 'passed'
+          }
+        };
+        axios.post.mockImplementationOnce(() => Promise.resolve(postSignupData));
+        await expect(asyncValidateMock({ values, field })).toEqual(Promise.resolve());
+      });
+
+      test('asyncValidatePassword merges existing password and username errors', async () => {
+        const postSignupData = {
+          data: {
+            valid: true,
+            blacklistCheck: 'FAILED'
+          }
+        };
+        const asyncErrors = { userInfo: { username: ['username error'] } };
+        const expected = {
+          userInfo:
+            {
+              username: ['username error'],
+              password: ['This password is too easy to guess. Please choose another password.']
+            }
+        };
+        axios.post.mockImplementationOnce(() => Promise.resolve(postSignupData));
+        await expect(asyncValidateMock({ values, asyncErrors, field }))
+          .rejects.toEqual(expected);
+      });
     });
   });
 });

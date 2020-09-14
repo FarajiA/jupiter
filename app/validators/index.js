@@ -1,7 +1,7 @@
 import i18n from '../i18n';
 import _ from 'lodash';
 import validate from 'validate.js';
-import { asyncValidateUsername, asyncValidatePassword } from './utils';
+import { asyncValidatePassword, asyncValidateUsername } from './utils';
 
 function translateDefaultValidators(t) {
   validate.validators.presence.message = t('validation:input.required');
@@ -198,7 +198,10 @@ export const validateBilling = (values, { t = i18nT(), ...props }) => {
   const billing = _.get(values, 'billingInfo', {});
   return {
     billingInfo: {
-      ...validateAddress(billing, { t, props }),
+      ...validateAddress(billing, {
+        t,
+        props
+      }),
       ...validateCurrency(billing, t),
       ...validateContractEntity(billing, t)
     }
@@ -279,8 +282,14 @@ export const validateUser = (values, { t = i18nT() }) => {
   };
 };
 
-export const asyncValidate = (values, dispatch, { t = i18nT() }, field) => {
+export const asyncValidate = (values, dispatch, { t = i18nT(), asyncErrors = {} }, field) => {
   const { userInfo: { username, password } } = values;
-  return field === 'userInfo.username'
-    ? asyncValidateUsername(username, dispatch, t) : asyncValidatePassword(password, t);
+  if (field === 'userInfo.username') {
+    return asyncValidateUsername(username, dispatch, t).catch((error) => {
+      throw _.merge(asyncErrors, error); // asyncErrors is undefined if none exist
+    });
+  }
+  return asyncValidatePassword(password, t).catch((error) => {
+    throw _.merge(asyncErrors, error);
+  });
 };

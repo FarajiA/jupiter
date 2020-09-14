@@ -27,7 +27,7 @@ export class UserName extends React.Component {
   };
 
   render() {
-    const { t, syncErrors: { userInfo }, username } = this.props;
+    const { t, syncErrors: { userInfo }, username, exists } = this.props;
     const tooltip = (
       <Tooltip id="username">{t('account:user.tips.username.generate')}</Tooltip>
     );
@@ -40,6 +40,7 @@ export class UserName extends React.Component {
           tooltip={tooltip}
           type="text"
           label={t('account:user.actions.username.create')}
+          hxClassNames={exists ? 'hxInvalid' : ''}
           required
         >
           {suffix && <span className="hxSuffix">{suffix}</span>}

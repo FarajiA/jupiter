@@ -1,4 +1,4 @@
-import * as enzyme from 'enzyme';
+import enzyme from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
@@ -10,7 +10,7 @@ import rootReducer from '../app/reducers/rootReducer';
 import thunk from 'redux-thunk';
 
 
-function withForm(Component, { props = {}, defaultProps, method, withRouter = false }) {
+function withForm(Component, { props = {}, defaultProps = {}, method, withRouter = false }) {
   const FormWrapper = reduxForm({ form: 'testForm' })(Component);
   const store = createStore(rootReducer, applyMiddleware(thunk));
   const history = createMemoryHistory();
@@ -47,12 +47,12 @@ export function mountedForm(Component, options) {
  * See AddressSection.test.js for reference
  * */
 export function mountWithForm(Component, options) {
-  return mountedForm(Component, options).find(Component);
+  return mountedForm(Component, options);
 }
 
 export function shallowWithForm(Component, options) {
   return withForm(Component, {
-    ...options,
+    options,
     method: 'shallow'
   });
 }
