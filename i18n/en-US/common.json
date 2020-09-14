@@ -46,10 +46,10 @@
   "headers.main.signUp" : {
     "translation" : "Rackspace Invoice Sign Up"
   },
-  "signUp.headers.main" : {
-    "translation" : "Rackspace Internal Cart"
-  },
   "notifications.loading" : {
     "translation" : "Loading..."
+  },
+  "signUp.headers.main" : {
+    "translation" : "Rackspace Internal Cart"
   }
 }

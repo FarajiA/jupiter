@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Modal from '../helix/Modal';
+import { Modal, Div } from '@helix-design-system/helix-react';
 import Button from '../helix/buttons/Button';
 import { withTranslation } from 'react-i18next';
 
@@ -49,21 +49,21 @@ export class SubmissionModal extends React.Component {
     const { t, hideModal, open } = this.props;
     const message = this.responseMessage();
     return (
-      <Modal isOpen={open} onClose={hideModal}>
-        <Modal.Header>
+      <Modal open={open} onClose={hideModal}>
+        <header>
           <h1>{message.header}</h1>
-        </Modal.Header>
-        <Modal.Body>
+        </header>
+        <Div>
           <p>{message.message}</p>
-        </Modal.Body>
-        <Modal.Footer>
+        </Div>
+        <footer>
           <Button
             type="button"
             classNames="hxPrimary"
             onClick={hideModal}
             label={t('common.status.ok')}
           />
-        </Modal.Footer>
+        </footer>
       </Modal>
     );
   };
@@ -82,7 +82,6 @@ const mapStateToProps = (state) => {
     success: state.signUpResponse.success,
     errorMessage: state.signUpResponse.error && state.signUpResponse.error.message,
     errorCode: state.signUpResponse.error && state.signUpResponse.error.code,
-    values: state.signUpResponse.values,
     accountname: state.signUpResponse.accountname,
     username: state.signUpResponse.username,
     ddi: state.signUpResponse.ddi
@@ -101,5 +100,4 @@ SubmissionModal.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-
-export default connect(mapStateToProps, null)(withTranslation()(SubmissionModal));
+export default connect(mapStateToProps)(withTranslation()(SubmissionModal));

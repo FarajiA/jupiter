@@ -28,6 +28,12 @@
   "error.serverError" : {
     "translation" : "Error connecting to server"
   },
+  "error.unknown.header" : {
+    "translation" : "Unknown Error"
+  },
+  "input.empty" : {
+    "translation" : "Empty"
+  },
   "input.invalidCharacter" : {
     "translation" : "{content} must not contain these special characters !@#$%^&*()-?_"
   },
@@ -63,11 +69,5 @@
   },
   "username.symbolRestriction" : {
     "translation" : "Username must not include these special character: %"
-  },
-  "error.unknown.header" : {
-    "translation" : "Unknown Error"
-  },
-  "input.empty": {
-    "translation" : "Empty"
   }
 }

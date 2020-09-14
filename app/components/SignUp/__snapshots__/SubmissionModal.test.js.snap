@@ -5,22 +5,20 @@ exports[`SubmissionModal it renders 1`] = `
   className="submission-modal"
 >
   <hx-modal
-    class="Modal undefined medium"
+    class=""
     open={true}
   >
-    <hx-modalhead>
+    <header>
       <h1>
         Error
       </h1>
-    </hx-modalhead>
-    <hx-modalbody
-      class="Body"
-    >
+    </header>
+    <hx-div>
       <p>
         Invalid Password. Please try using a more secure password.
       </p>
-    </hx-modalbody>
-    <hx-modalfoot>
+    </hx-div>
+    <footer>
       <button
         className="hxBtn hxPrimary"
         disabled={false}
@@ -28,7 +26,7 @@ exports[`SubmissionModal it renders 1`] = `
       >
         OK
       </button>
-    </hx-modalfoot>
+    </footer>
   </hx-modal>
 </div>
 `;

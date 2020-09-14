@@ -28,6 +28,12 @@
   "error.serverError" : {
     "translation" : "サーバー接続エラー"
   },
+  "error.unknown.header" : {
+    "translation" : "不明なエラー"
+  },
+  "input.empty" : {
+    "translation" : "空欄"
+  },
   "input.invalidCharacter" : {
     "translation" : "{content}には、次の特殊文字を含めることはできません：!@#$%^&*()-?_"
   },
@@ -63,11 +69,5 @@
   },
   "username.symbolRestriction" : {
     "translation" : "ユーザー名に次の特殊文字を含めることはできません：%"
-  },
-  "error.unknown.header" : {
-    "translation" : "不明なエラー"
-  },
-  "input.empty" : {
-    "translation" : "空欄"
   }
 }

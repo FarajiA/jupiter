@@ -7,6 +7,9 @@
       "path" : "*/translation"
     }
   },
+  "actions.jupiter.goToProductGuide" : {
+    "translation" : "アクセス権限のリクエスト方法については、マニュアルを参照してください。"
+  },
   "billing.actions.currency.select" : {
     "translation" : "通貨を選択"
   },
@@ -157,16 +160,13 @@
   "user.status.create.success" : {
     "translation" : "アカウント「{accountname}」、ドメインID「{ddi}」のユーザー「{username}」が作成されました。"
   },
-  "user.tips.username.generate" : {
-    "translation" : "姓または名が変更されると、新しいユーザー名が自動的に生成されます。"
-  },
   "user.tip.invalidAccountPermission" : {
     "translation" : "このリソースにアクセスするために必要な権限がありません。"
   },
   "user.tip.viewDocumentation" : {
     "translation" : "ドキュメントの表示"
   },
-  "actions.jupiter.goToProductGuide" : {
-    "translation" : "アクセス権限のリクエスト方法については、マニュアルを参照してください。"
+  "user.tips.username.generate" : {
+    "translation" : "姓または名が変更されると、新しいユーザー名が自動的に生成されます。"
   }
 }

@@ -7,6 +7,9 @@
       "path" : "*/translation"
     }
   },
+  "actions.jupiter.goToProductGuide" : {
+    "translation" : "For information on how to request access, refer to the documentation."
+  },
   "billing.actions.currency.select" : {
     "translation" : "Select Currency"
   },
@@ -157,16 +160,13 @@
   "user.status.create.success" : {
     "translation" : "User {username} has been created in account {accountname} with a domain ID of {ddi}."
   },
-  "user.tips.username.generate" : {
-    "translation" : "If your first name or last name is changed, a new username will be automatically generated for you."
-  },
   "user.tip.invalidAccountPermission" : {
     "translation" : "You do not have the required permissions to access this resource."
   },
   "user.tip.viewDocumentation" : {
     "translation" : "View Docs"
   },
-  "actions.jupiter.goToProductGuide" : {
-    "translation" : "For information on how to request access, refer to the documentation."
+  "user.tips.username.generate" : {
+    "translation" : "If your first name or last name is changed, a new username will be automatically generated for you."
   }
 }
