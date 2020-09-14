@@ -282,14 +282,14 @@ export const validateUser = (values, { t = i18nT() }) => {
   };
 };
 
-export const asyncValidate = (values, dispatch, { t = i18nT(), asyncErrors }, field) => {
+export const asyncValidate = (values, dispatch, { t = i18nT(), asyncErrors = {} }, field) => {
   const { userInfo: { username, password } } = values;
   if (field === 'userInfo.username') {
     return asyncValidateUsername(username, dispatch, t).catch((error) => {
-      throw !asyncErrors ? error : _.merge(asyncErrors, error); // asyncErrors is undefined if none exist
+      throw _.merge(asyncErrors, error); // asyncErrors is undefined if none exist
     });
   }
   return asyncValidatePassword(password, t).catch((error) => {
-    throw !asyncErrors ? error : _.merge(asyncErrors, error);
+    throw _.merge(asyncErrors, error);
   });
 };
