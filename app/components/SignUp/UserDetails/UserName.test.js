@@ -14,6 +14,7 @@ describe('UserName', () => {
     error: false,
     loading: false,
     success: false,
+    formSubmitted: false,
     hxClassNames: '',
     setUsername: setUsernameMock,
     syncErrors: {
@@ -64,6 +65,7 @@ describe('UserName', () => {
   test('it renders the checkmark suffix if success prop is true', () => {
     const props = {
       success: true,
+      formSubmitted: true,
       syncErrors: {
         userInfo: {}
       }
