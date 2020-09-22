@@ -41,7 +41,7 @@ export class BillingInfoForm extends React.Component {
   }
 
   render() {
-    const { t, handleSubmit, history, customerType, country, hasZipcode } = this.props;
+    const { t, handleSubmit, history, customerType, country, hasZipcode, productType } = this.props;
     return (
       <form onSubmit={handleSubmit(this.submitAddressValidation)}>
         <div className="Input-section u-form">
@@ -54,6 +54,7 @@ export class BillingInfoForm extends React.Component {
             />
             <CurrencySelector
               customerType={customerType}
+              productType={productType}
               country={country}
               t={t}
             />
@@ -89,6 +90,7 @@ BillingInfoForm.propTypes = {
   t: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   customerType: PropTypes.string,
+  productType: PropTypes.string,
   checkAddress: PropTypes.func.isRequired,
   addressValidation: PropTypes.object,
   hasZipcode: PropTypes.bool,
@@ -105,6 +107,7 @@ const mapStateToProps = (state) => {
   const zipcode = _.get(countryLists, [countrywithZip, 'hasZipCode']);
   return {
     customerType: formValueSelector('signUp')(state, 'customerInfo.customerType'),
+    productType: formValueSelector('signUp')(state, 'customerInfo.productType'),
     country: countrywithZip,
     countryData: state.country.details,
     hasZipcode: zipcode,
