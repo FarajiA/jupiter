@@ -12,6 +12,7 @@ describe('BillingInfoForm', () => {
   const defaultProps = {
     customerType: 'rackspace',
     country: 'US',
+    productType: 'aws',
     handleSubmit: submitMock,
     checkAddress: mockCheckAddress,
     history: {
