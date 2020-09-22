@@ -21,7 +21,7 @@ export class UserName extends React.Component {
       // this avoids showing the exclamation before the field has been touched, but shows when a sync error occurs
     } if (this.props.success && !usernameErrors && !this.props.exists) {
       return <hx-icon class="checkmark" type="checkmark-circle"> </hx-icon>;
-    } if (this.props.exists || usernameErrors) {
+    } if (!this.props.formSubmitted && (this.props.exists || usernameErrors)) {
       return <hx-icon class="exclamation" type="exclamation-circle"> </hx-icon>;
     }
   };
@@ -55,6 +55,7 @@ UserName.propTypes = {
   username: PropTypes.string,
   t: PropTypes.func.isRequired,
   success: PropTypes.bool,
+  formSubmitted: PropTypes.bool,
   exists: PropTypes.bool,
   loading: PropTypes.bool,
   syncErrors: PropTypes.shape({
@@ -70,6 +71,7 @@ const mapStateToProps = (state) => {
     loading: state.username.pending,
     success: state.username.success,
     exists: state.username.exists,
+    formSubmitted: state.signUpResponse.success,
     syncErrors: getFormSyncErrors('signUp')(state)
   };
 };
