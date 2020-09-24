@@ -17,7 +17,7 @@ const Input = (props) => {
   } = props;
   return (
     <div className={`${meta.asyncValidating ? 'async-validating' : ''} InputField`}>
-      <hx-text-control class={hxClassNames}>
+      <hx-text-control class={meta.touched && meta.invalid ? 'hxInvalid' : hxClassNames}>
         <input
           {...input}
           className="hxTextCtrl"
@@ -54,6 +54,7 @@ Input.propTypes = {
       PropTypes.string,
       PropTypes.array
     ]),
+    invalid: PropTypes.bool,
     asyncValidating: PropTypes.bool
   }),
   input: PropTypes.shape({
