@@ -1,4 +1,3 @@
-import tr from 'i18next-icu/locale-data/tr';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Input from './Input';
