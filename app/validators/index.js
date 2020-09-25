@@ -290,7 +290,7 @@ export const asyncValidate = (values, dispatch, { t = i18nT(), asyncErrors = {} 
     });
   }
   return asyncValidatePassword(password, t).then(() => {
-    if (asyncErrors) {
+    if (!_.isEmpty(asyncErrors)) {
       throw asyncErrors;
     }
   })
