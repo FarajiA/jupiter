@@ -289,7 +289,12 @@ export const asyncValidate = (values, dispatch, { t = i18nT(), asyncErrors = {} 
       throw _.merge(asyncErrors, error); // asyncErrors is undefined if none exist
     });
   }
-  return asyncValidatePassword(password, t).catch((error) => {
-    throw _.merge(asyncErrors, error);
-  });
+  return asyncValidatePassword(password, t).then(() => {
+    if (asyncErrors) {
+      throw asyncErrors;
+    }
+  })
+    .catch((error) => {
+      throw _.merge(asyncErrors, error);
+    });
 };

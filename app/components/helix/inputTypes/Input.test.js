@@ -11,6 +11,7 @@ describe('Input', () => {
     type: 'text',
     meta: {
       touched: false,
+      invalid: false,
       error: 'Errors Ahoy!'
     }
   };
@@ -40,5 +41,21 @@ describe('Input', () => {
     const wrapper = shallow(<Input {...props} />);
     expect(wrapper.find('Error').length).toBe(1);
     expect(wrapper.find('Error').dive().text()).toEqual('Errors Ahoy!');
+  });
+  test('it sets hxInvalid class when field is touched & invalid', () => {
+    const props = {
+      input: {
+        name: ''
+      },
+      label: 'First Name',
+      type: 'text',
+      meta: {
+        touched: true,
+        invalid: true
+      }
+    };
+    const wrapper = shallow(<Input {...props} />);
+    expect(wrapper.find('Error').length).toBe(1);
+    expect(wrapper.find('hx-text-control').prop('class').includes('hxInvalid')).toBeTruthy();
   });
 });
