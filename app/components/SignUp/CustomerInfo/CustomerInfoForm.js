@@ -11,8 +11,13 @@ import ChannelType from './infoselectors/ChannelType';
 import Product from './Product';
 import { ADDRESS_FIELDS } from '../../../actions/constants/address';
 import { getCountry } from '../../../actions/address/getCountry';
+import { updateSteps } from '../../../actions/stepsUpdate';
 
 export class CustomerInfoForm extends React.Component {
+  componentDidMount() {
+    this.props.updateSteps(0);
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.customerType === 'rbu' && prevProps.customerType !== this.props.customerType) {
       this.clearAddressFields();
@@ -91,6 +96,7 @@ CustomerInfoForm.propTypes = {
   clearProduct: PropTypes.func.isRequired,
   setAddress: PropTypes.func.isRequired,
   getCountry: PropTypes.func.isRequired,
+  updateSteps: PropTypes.func.isRequired,
   clearContractEntity: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
@@ -136,6 +142,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     clearContractEntity: () => {
       dispatch(change('signUp', 'billingInfo.contractEntity', ''));
+    },
+    updateSteps: (step) => {
+      dispatch(updateSteps(step));
     }
   };
 };

@@ -6,6 +6,7 @@ import getCountry from './getCountryReducer';
 import listCountries from './listCountriesReducer';
 import addressValidation from './validateAddressReducer';
 import validateRoles from './validateRolesReducer';
+import stepsReducer from './stepsReducer';
 
 export default combineReducers({
   form: formReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   countries: listCountries,
   country: getCountry,
   roles: validateRoles,
+  steps: stepsReducer,
   addressValidation
 });

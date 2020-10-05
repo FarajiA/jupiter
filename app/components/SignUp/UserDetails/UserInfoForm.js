@@ -12,11 +12,16 @@ import Submit from '../../helix/buttons/Submit';
 import UserInfo from './UserInfo';
 import { FormSection, reduxForm } from 'redux-form';
 import { asyncValidate, validateUser } from '../../../validators';
+import { updateSteps } from '../../../actions/stepsUpdate';
 
 export class UserInfoForm extends React.Component {
   state = {
     open: false
   };
+
+  componentDidMount() {
+    this.props.updateSteps(2);
+  }
 
   handleSubmit = (values) => {
     const toSubmit = formatRequest(values);
@@ -60,6 +65,7 @@ export class UserInfoForm extends React.Component {
             </div>
           </div>
         </form>
+        {result && this.props.updateSteps(3)}
         {result && <SubmissionModal open={this.state.open} hideModal={this.closeModal} />}
       </div>
     );
@@ -74,6 +80,7 @@ UserInfoForm.propTypes = {
   signUp: PropTypes.func.isRequired,
   result: PropTypes.bool.isRequired,
   pending: PropTypes.bool.isRequired,
+  updateSteps: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   })
@@ -94,6 +101,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     resetReduxState: (value) => {
       dispatch(resetReduxState(value));
+    },
+    updateSteps: (step) => {
+      dispatch(updateSteps(step));
     }
   };
 };

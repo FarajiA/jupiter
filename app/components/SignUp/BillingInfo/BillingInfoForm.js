@@ -12,8 +12,13 @@ import CurrencySelector from './CurrencySelector';
 import ContractEntitySelector from './ContractEntitySelector';
 import Button from '../../helix/buttons/Button';
 import Submit from '../../helix/buttons/Submit';
+import { updateSteps } from '../../../actions/stepsUpdate';
 
 export class BillingInfoForm extends React.Component {
+  componentDidMount() {
+    this.props.updateSteps(1);
+  }
+
   componentDidUpdate(prevProps) {
     const lastHasZip = prevProps.hasZipcode;
     const hasZip = this.props.hasZipcode;
@@ -96,6 +101,7 @@ BillingInfoForm.propTypes = {
   hasZipcode: PropTypes.bool,
   change: PropTypes.func,
   country: PropTypes.string,
+  updateSteps: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   })
@@ -130,6 +136,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     checkAddress: (values) => {
       return dispatch(checkAddress(values));
+    },
+    updateSteps: (step) => {
+      dispatch(updateSteps(step));
     }
   };
 };
