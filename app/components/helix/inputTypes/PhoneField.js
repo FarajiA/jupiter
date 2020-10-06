@@ -44,11 +44,12 @@ class PhoneField extends React.Component {
           searchPlaceholder={t('common:actions.basic.search')}
           searchNotFound={t('common:search.status.notFound')}
           enableSearch
+          enableLongNumbers
           disableSearchIcon
           inputProps={{
             name,
             required: true,
-            autoFocus: true
+            autoFocus: false
           }}
         />
         <Error meta={meta} />
