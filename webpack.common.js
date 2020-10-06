@@ -50,10 +50,6 @@ module.exports = {
       /^helix-ui\.css$/,
       path.join(__dirname, '/node_modules/helix-ui/dist/styles/helix-ui.min.css')
     ),
-    new webpack.NormalModuleReplacementPlugin(
-      /^react-intl-tel-input$/,
-      path.join(__dirname + '/node_modules/react-intl-tel-input/dist/main.js')
-    ),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'app/index.html',

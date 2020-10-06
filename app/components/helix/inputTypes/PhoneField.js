@@ -1,45 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IntlTelInput from 'react-intl-tel-input';
-import 'react-intl-tel-input/dist/main.css';
-import _ from 'lodash';
+import { get, toUpper } from 'lodash';
 import Error from '../Error';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 class PhoneField extends React.Component {
-  onChange = (...args) => {
-    this.props.input.onChange(this.formatValue(...args));
+  onChange = (inputValue, countryData, event, formattedNumber) => {
+    this.props.input.onChange(this.formatValue(countryData, formattedNumber));
   };
 
-  onBlur = (...args) => this.props.input.onBlur(this.formatValue(...args));
+  // onBlur only returns the event and countryData
+  onBlur = (event, countryData) => {
+    this.props.input.onBlur(this.formatValue(countryData, event.target.value));
+  };
 
   /** Format large data-set coming from component into a smaller data-set we can send back to redux-form */
-  formatValue = (valid, inputValue, countryData, number) => {
+  formatValue = (countryData, formattedValue) => {
+    const format = get(countryData, 'format');
     return {
-      valid,
-      inputValue,
-      number: number.replace(/[- .()]?/g, ''),
-      countryCode: _.toUpper(_.get(countryData, 'iso2'))
+      number: formattedValue.split(' ').pop().replace(/[- .()+]?/g, ''),
+      formattedValue,
+      valid: formattedValue && format ? get(countryData, 'format').length === formattedValue.length : false,
+      countryCode: toUpper(get(countryData, 'dialCode'))
     };
   };
 
   render() {
-    const { name, id, label, meta } = this.props;
+    const { name, label, meta, t } = this.props;
     return (
       <div className="InputField">
         <label htmlFor={name}>
           <span className="InputField-label">{label}</span>
         </label>
-        <IntlTelInput
-          fieldId={id}
-          name={name}
-          onPhoneNumberChange={this.onChange}
-          onPhoneNumberBlur={this.onBlur}
-          containerClassName="intl-tel-input u-input-stretch form-control tel-input"
-          inputClassName="hxTextCtrl"
-          formatOnInit
-          allowDropdown
-          utilsScript="libphonenumber.js"
-          nationalMode={false}
+        <PhoneInput
+          inputClass="hxTextCtrl"
+          country="us" // default country
+          onBlur={(event, value, other) => this.onBlur(event, value, other)}
+          onChange={this.onChange}
+          searchPlaceholder={t('common:actions.basic.search')}
+          searchNotFound={t('common:search.status.notFound')}
+          enableSearch
+          disableSearchIcon
+          inputProps={{
+            name,
+            required: true,
+            autoFocus: true
+          }}
         />
         <Error meta={meta} />
       </div>
@@ -60,8 +67,8 @@ PhoneField.propTypes = {
     ])
   }),
   name: PropTypes.string,
-  id: PropTypes.string,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default PhoneField;

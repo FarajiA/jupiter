@@ -16,6 +16,9 @@
   "actions.basic.next" : {
     "translation" : "Next"
   },
+  "actions.basic.search" : {
+    "translation" : "Search"
+  },
   "actions.basic.show" : {
     "translation" : "Show"
   },
@@ -48,6 +51,9 @@
   },
   "notifications.loading" : {
     "translation" : "Loading..."
+  },
+  "search.status.notFound" : {
+    "translation" : "No entries to show"
   },
   "signUp.headers.main" : {
     "translation" : "Rackspace Internal Cart"

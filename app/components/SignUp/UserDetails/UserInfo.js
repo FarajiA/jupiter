@@ -86,6 +86,7 @@ export class UserInfo extends React.Component {
             id="phoneNumber"
             component={PhoneField}
             label={t('account:user.details.phoneNumber')}
+            t={t}
             required
           />
         </div>
