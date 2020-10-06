@@ -19,7 +19,7 @@ class PhoneField extends React.Component {
   formatValue = (countryData, formattedValue) => {
     const format = get(countryData, 'format');
     return {
-      number: formattedValue.split(' ').pop().replace(/[- .()+]?/g, ''),
+      number: formattedValue.replace(/[- .()]?/g, ''),
       formattedValue,
       valid: formattedValue && format ? get(countryData, 'format').length === formattedValue.length : false,
       countryCode: toUpper(get(countryData, 'dialCode'))
