@@ -19,6 +19,7 @@ class PhoneField extends React.Component {
   formatValue = (countryData, formattedValue) => {
     const format = get(countryData, 'format');
     return {
+      inputValue: formattedValue.split(' ').slice(1).join(''),
       number: formattedValue.replace(/[- .()]?/g, ''),
       formattedValue,
       valid: formattedValue && format ? get(countryData, 'format').length === formattedValue.length : false,
@@ -28,16 +29,18 @@ class PhoneField extends React.Component {
 
   render() {
     const { name, label, meta, t } = this.props;
+    const errorBorder = (meta.touched && meta.invalid) && ' error-border';
     return (
       <div className="InputField">
         <label htmlFor={name}>
           <span className="InputField-label">{label}</span>
         </label>
         <PhoneInput
-          inputClass="hxTextCtrl"
+          inputClass={`hxTextCtrl${errorBorder}`}
           country="us" // default country
           onBlur={(event, value, other) => this.onBlur(event, value, other)}
           onChange={this.onChange}
+          buttonClass={errorBorder}
           searchPlaceholder={t('common:actions.basic.search')}
           searchNotFound={t('common:search.status.notFound')}
           enableSearch
@@ -61,6 +64,7 @@ PhoneField.propTypes = {
   }).isRequired,
   meta: PropTypes.shape({
     touched: PropTypes.bool,
+    invalid: PropTypes.bool,
     error: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.array

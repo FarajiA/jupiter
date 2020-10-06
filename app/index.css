@@ -159,6 +159,10 @@ hx-text-control[hx-dirty] > input[type="password"]:enabled:invalid, hx-text-cont
     border: 1px solid #bdbdbd;
 }
 
+.error-border {
+    border: 2px solid #d32f2f!important;
+}
+
 .tooltip hx-icon {
     margin-left: 5px;
 }
