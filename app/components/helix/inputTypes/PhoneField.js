@@ -37,7 +37,7 @@ class PhoneField extends React.Component {
         <PhoneInput
           inputClass={`hxTextCtrl${errorBorder}`}
           country="us" // default country
-          onBlur={(event, value, other) => this.onBlur(event, value, other)}
+          onBlur={this.onBlur}
           onChange={this.onChange}
           buttonClass={errorBorder}
           searchPlaceholder={t('common:actions.basic.search')}
