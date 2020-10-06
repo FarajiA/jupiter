@@ -10,7 +10,6 @@ class PhoneField extends React.Component {
     this.props.input.onChange(this.formatValue(countryData, formattedNumber));
   };
 
-  // onBlur only returns the event and countryData
   onBlur = (event, countryData) => {
     this.props.input.onBlur(this.formatValue(countryData, event.target.value));
   };
