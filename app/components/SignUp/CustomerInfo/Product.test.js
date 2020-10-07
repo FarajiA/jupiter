@@ -68,6 +68,8 @@ describe('Product', () => {
   test('tooltip prop is rendered', () => {
     const mounted = mountWithForm(Product, { defaultProps });
     expect(mounted.find('hx-tooltip').length).toEqual(1);
-    expect(mounted.find('hx-tooltip').text()).toEqual('Currently RBU customers only have access to Managed AWS');
+    expect(mounted.find('hx-tooltip').text()).toEqual(
+      'Currently RBU customers only have access to Managed AWS and Rackspace Private Cloud - VMware'
+    );
   });
 });

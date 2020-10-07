@@ -77,7 +77,7 @@
     "translation" : "Customer Information"
   },
   "customer.tips.rbu.productRestriction" : {
-    "translation" : "Currently RBU customers only have access to Managed AWS"
+    "translation" : "Currently RBU customers only have access to Managed AWS and Rackspace Private Cloud - VMware"
   },
   "customer.tips.vmc.channeltype.alert" : {
     "translation" : "Please be sure of your choice as this affects finance and compensation. If unsure please contact <0>{email}</0>"

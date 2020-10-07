@@ -77,7 +77,7 @@
     "translation" : "顧客情報"
   },
   "customer.tips.rbu.productRestriction" : {
-    "translation" : "現在、RBUのお客様は、マネージドAWSにのみアクセスできます。"
+    "translation" : "現在、RBUのお客様は、マネージドAWSとRackspace Private Cloud - VMwareにのみアクセスできます。"
   },
   "customer.tips.vmc.channeltype.alert" : {
     "translation" : "これはファイナンスや補償にも影響しますので、お間違いのないように確認してください。ご不明な点がある場合は、&lt;0&gt;{email}&lt;/0&gt; までご連絡ください。"

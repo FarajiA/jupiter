@@ -68,7 +68,7 @@ exports[`Product it renders 1`] = `
           for="product-restriction-tooltip"
           position="right-middle"
         >
-          Currently RBU customers only have access to Managed AWS
+          Currently RBU customers only have access to Managed AWS and Rackspace Private Cloud - VMware
         </hx-tooltip>
       </div>
     </label>
