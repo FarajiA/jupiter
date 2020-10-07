@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get, toUpper } from 'lodash';
+import classnames from 'classnames';
 import Error from '../Error';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -28,14 +29,14 @@ class PhoneField extends React.Component {
 
   render() {
     const { name, label, meta, t } = this.props;
-    const errorBorder = (meta.touched && meta.invalid) && ' error-border';
+    const errorBorder = (meta.touched && meta.invalid) && 'error-border';
     return (
       <div className="InputField">
         <label htmlFor={name}>
           <span className="InputField-label">{label}</span>
         </label>
         <PhoneInput
-          inputClass={`hxTextCtrl${errorBorder}`}
+          inputClass={classnames(errorBorder, 'hxTextCtrl')}
           country="us" // default country
           onBlur={this.onBlur}
           onChange={this.onChange}
