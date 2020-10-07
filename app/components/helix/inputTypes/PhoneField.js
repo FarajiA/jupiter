@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get, toUpper } from 'lodash';
 import classnames from 'classnames';
 import Error from '../Error';
 import PhoneInput from 'react-phone-input-2';
@@ -17,13 +16,12 @@ class PhoneField extends React.Component {
 
   /** Format large data-set coming from component into a smaller data-set we can send back to redux-form */
   formatValue = (countryData, formattedValue) => {
-    const format = get(countryData, 'format');
     return {
       inputValue: formattedValue.split(' ').slice(1).join(''),
       number: formattedValue.replace(/[- .()]?/g, ''),
       formattedValue,
-      valid: formattedValue && format ? get(countryData, 'format').length === formattedValue.length : false,
-      countryCode: toUpper(get(countryData, 'dialCode'))
+      valid: formattedValue && countryData?.format ? countryData?.format?.length === formattedValue.length : false,
+      countryCode: countryData?.dialCode?.toUpperCase() ?? ''
     };
   };
 
