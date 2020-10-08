@@ -17,6 +17,7 @@ describe('PhoneField', () => {
     },
     name: 'phone',
     label: 'Phone Number',
+    country: 'GB', // United Kingdom
     t
   };
   const wrapper = (props) => {
@@ -62,6 +63,11 @@ describe('PhoneField', () => {
       }
     };
     expect(mounted(props).find('.error').text()).toEqual('Required');
+  });
+
+  test('default country should be country prop', () => {
+    expect(mounted().find('div.flag').hasClass('gb')).toBeTruthy();
+    expect(mounted({ country: 'US' }).find('div.flag').hasClass('us')).toBeTruthy();
   });
 
   test('onChange should invoke the onChange with correct parameters', () => {

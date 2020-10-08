@@ -11,7 +11,6 @@ describe('UserInfoForm', () => {
   const resetReduxStateMock = jest.fn();
   const defaultProps = {
     customerType: 'rackspace',
-    country: 'US',
     handleSubmit: submitMock,
     signUp: signupMock,
     pending: false,

@@ -26,7 +26,7 @@ class PhoneField extends React.Component {
   };
 
   render() {
-    const { name, label, meta, t } = this.props;
+    const { name, label, meta, t, country } = this.props;
     const errorBorder = (meta.touched && meta.invalid) && 'error-border';
     return (
       <div className="InputField">
@@ -35,7 +35,7 @@ class PhoneField extends React.Component {
         </label>
         <PhoneInput
           inputClass={classnames(errorBorder, 'hxTextCtrl')}
-          country="us" // default country
+          country={country ? country.toLowerCase() : 'us'} // default country
           onBlur={this.onBlur}
           onChange={this.onChange}
           buttonClass={errorBorder}
@@ -71,6 +71,7 @@ PhoneField.propTypes = {
   }),
   name: PropTypes.string,
   label: PropTypes.string.isRequired,
+  country: PropTypes.string,
   t: PropTypes.func.isRequired
 };
 

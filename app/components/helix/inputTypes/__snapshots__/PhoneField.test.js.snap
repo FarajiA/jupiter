@@ -39,7 +39,7 @@ exports[`PhoneField PhoneField renders correct props 1`] = `
       required={true}
       style={Object {}}
       type="tel"
-      value="+1"
+      value="+44"
     />
     <div
       className="false flag-dropdown"
@@ -51,10 +51,10 @@ exports[`PhoneField PhoneField renders correct props 1`] = `
         onClick={[Function]}
         role="button"
         tabIndex="0"
-        title="United States: + 1"
+        title="United Kingdom: + 44"
       >
         <div
-          className="flag us"
+          className="flag gb"
         >
           <div
             className="arrow"

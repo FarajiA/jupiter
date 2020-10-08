@@ -30,7 +30,7 @@ export class UserInfo extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, country } = this.props;
     return (
       <div className="Input-section">
         <div className="hxRow">
@@ -86,6 +86,7 @@ export class UserInfo extends React.Component {
             id="phoneNumber"
             component={PhoneField}
             label={t('account:user.details.phoneNumber')}
+            country={country}
             t={t}
             required
           />
@@ -116,13 +117,15 @@ UserInfo.propTypes = {
   t: PropTypes.func.isRequired,
   checkIfExists: PropTypes.func.isRequired,
   firstName: PropTypes.string,
-  lastName: PropTypes.string
+  lastName: PropTypes.string,
+  country: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
   return {
     firstName: formValueSelector('signUp')(state, 'userInfo.firstName'),
-    lastName: formValueSelector('signUp')(state, 'userInfo.lastName')
+    lastName: formValueSelector('signUp')(state, 'userInfo.lastName'),
+    country: formValueSelector('signUp')(state, 'billingInfo.address.country')
   };
 };
 
