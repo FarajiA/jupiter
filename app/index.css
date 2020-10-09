@@ -152,6 +152,17 @@ hx-text-control[hx-dirty] > input[type="password"]:enabled:invalid, hx-text-cont
     color: #0b843d;
 }
 
+.InputField input[type="tel"] {
+    width: 100%;
+    border-radius: 2px;
+    font-size: 1rem;
+    border: 1px solid #bdbdbd;
+}
+
+.error-border {
+    border: 2px solid #d32f2f!important;
+}
+
 .tooltip hx-icon {
     margin-left: 5px;
 }

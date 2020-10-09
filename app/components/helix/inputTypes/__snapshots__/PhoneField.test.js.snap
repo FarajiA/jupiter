@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhoneField PhoneField renders correct props 1`] = `
+<div
+  className="InputField"
+>
+  <label
+    htmlFor="phone"
+  >
+    <span
+      className="InputField-label"
+    >
+      Phone Number
+    </span>
+  </label>
+  <div
+    className=" react-tel-input"
+    onKeyDown={[Function]}
+    style={Object {}}
+  >
+    <div
+      className="special-label"
+    >
+      Phone
+    </div>
+    <input
+      autoFocus={false}
+      className="hxTextCtrl form-control"
+      disabled={false}
+      name="phone"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onCopy={[Function]}
+      onDoubleClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="1 (702) 123-4567"
+      required={true}
+      style={Object {}}
+      type="tel"
+      value="+44"
+    />
+    <div
+      className="false flag-dropdown"
+      style={Object {}}
+    >
+      <div
+        aria-haspopup="listbox"
+        className="selected-flag"
+        onClick={[Function]}
+        role="button"
+        tabIndex="0"
+        title="United Kingdom: + 44"
+      >
+        <div
+          className="flag gb"
+        >
+          <div
+            className="arrow"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="error"
+  />
+</div>
+`;

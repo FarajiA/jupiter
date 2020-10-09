@@ -88,7 +88,7 @@ export const validatePhoneNumber = (values, { t = i18nT() }) => {
   const phoneNumber = _.get(values, 'phoneNumber');
   if (phoneNumber) {
     if (typeof phoneNumber === 'object') {
-      if (_.isEmpty(_.trim(phoneNumber.number))) {
+      if (_.isEmpty(phoneNumber.inputValue)) {
         errors.phoneNumber = [t('validation:input.required')];
       } else if (!phoneNumber.valid) {
         errors.phoneNumber = [t('validation:phone.mustBeAValidNumber')];

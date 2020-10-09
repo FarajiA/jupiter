@@ -16,6 +16,9 @@
   "actions.basic.next" : {
     "translation" : "次へ"
   },
+  "actions.basic.search" : {
+    "translation" : "検索"
+  },
   "actions.basic.show" : {
     "translation" : "表示する"
   },
@@ -48,6 +51,9 @@
   },
   "notifications.loading" : {
     "translation" : "ロード中..."
+  },
+  "search.status.notFound" : {
+    "translation" : "表示するエントリがありません"
   },
   "signUp.headers.main" : {
     "translation" : "Rackspace Internal Cart"
