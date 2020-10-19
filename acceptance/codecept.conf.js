@@ -28,9 +28,7 @@ exports.config = {
     }
   },
   include: {
-    I: './steps_file.js',
-    customerInfo: './fragments/customerInfo.js',
-    billing: './fragments/billing.js'
+    I: './steps_file.js'
   },
   bootstrap: null,
   mocha: {},
