@@ -72,7 +72,7 @@ describe('PhoneField', () => {
 
   test('onChange should invoke the onChange with correct parameters', () => {
     const expected = {
-      countryCode: '1',
+      countryCode: 'GB',
       formattedValue: '+1 (234) 5',
       inputValue: '(234)5',
       number: '+12345',
@@ -82,7 +82,7 @@ describe('PhoneField', () => {
       '12345',
       {
         format: '+....',
-        dialCode: '1'
+        countryCode: 'GB'
       },
       {
         target: {
@@ -98,7 +98,7 @@ describe('PhoneField', () => {
 
   test('onBlur should invoke the onBlur prop', () => {
     const expected = {
-      countryCode: '1',
+      countryCode: 'US',
       formattedValue: '+1 (234) 5',
       inputValue: '(234)5',
       number: '+12345',
@@ -113,7 +113,7 @@ describe('PhoneField', () => {
       },
       {
         format: '+....',
-        dialCode: '1'
+        countryCode: 'US'
       }
     );
     expect(onBlurMock).toHaveBeenCalled();
