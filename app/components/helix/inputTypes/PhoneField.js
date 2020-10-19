@@ -21,7 +21,7 @@ class PhoneField extends React.Component {
       number: formattedValue.replace(/[- .()]?/g, ''),
       formattedValue,
       valid: formattedValue && countryData?.format ? countryData?.format?.length === formattedValue.length : false,
-      countryCode: countryData?.dialCode?.toUpperCase() ?? ''
+      countryCode: countryData?.countryCode?.toUpperCase() ?? ''
     };
   };
 

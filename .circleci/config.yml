@@ -42,27 +42,6 @@ jobs:
           paths:
             - build
 
-  acceptance:
-    docker:
-      - image: circleci/python:2.7
-
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-
-      - setup_remote_docker:
-          remote: true
-          reusable: true
-          docker_layer_caching: true
-          version: '18.09.3'
-
-      - run:
-          name: Run acceptance tests
-          command: |
-            cd acceptance; docker-compose build && docker-compose up -d
-            docker exec -it acceptance npm run codecept
-
   deploy-staging:
     docker:
       - image: circleci/python:2.7
@@ -120,10 +99,6 @@ workflows:
           <<: *not_master
           requires:
             - staging-deploy-ask
-      - acceptance:
-          <<: *not_master
-          requires:
-            - deploy-staging
 
       # Because deploy to staging has already happened before merge to master, we can go to prod - enforced by git branch protection.
       - deploy-prod:
