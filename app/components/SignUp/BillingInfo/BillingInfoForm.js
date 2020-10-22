@@ -75,7 +75,7 @@ export class BillingInfoForm extends React.Component {
                 <Button
                   label={t('common:actions.basic.next')}
                   variant="primary"
-                  size="wide"
+                  wide
                   submit
                 />
               </div>

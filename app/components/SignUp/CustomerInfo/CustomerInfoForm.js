@@ -72,7 +72,7 @@ export class CustomerInfoForm extends React.Component {
                   label={t('common:actions.basic.next')}
                   submit
                   variant="primary"
-                  size="wide"
+                  wide
                 />
               </div>
             </div>

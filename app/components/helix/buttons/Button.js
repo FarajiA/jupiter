@@ -31,8 +31,7 @@ class Button extends React.Component {
         size={size}
         busy={processing}
       >
-        {!processing && (label || children)}
-        {processing && <span>{label || children}</span>}
+        {processing ? <span>{label || children}</span> : (label || children)}
       </HelixButton>
     );
   }
