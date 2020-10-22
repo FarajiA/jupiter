@@ -1,20 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button as HelixButton } from '@helix-design-system/helix-react';
+import classnames from 'classnames';
 
 class Button extends React.Component {
   render() {
-    const { label, disabled, classNames, onClick, processing, submit, children } = this.props;
+    const {
+      label,
+      disabled,
+      classNames,
+      onClick,
+      processing,
+      submit,
+      children,
+      variant,
+      size,
+      wide
+    } = this.props;
+    const buttonClassNames = classnames(classNames, {
+      'submit-btn': submit,
+      'btn-wide': wide
+    });
     return (
-      <button // eslint-disable-line react/button-has-type
-        className={`hxBtn ${classNames}`}
+      <HelixButton
+        className={buttonClassNames} // helix automatically adds a space between prefilled and added classes
         type={submit ? 'submit' : 'button'}
         disabled={disabled}
         onClick={onClick}
+        variant={variant}
+        size={size}
+        busy={processing}
       >
         {!processing && (label || children)}
         {processing && <span>{label || children}</span>}
-        {processing && <hx-busy />}
-      </button>
+      </HelixButton>
     );
   }
 }
@@ -26,12 +45,16 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   classNames: PropTypes.string,
   processing: PropTypes.bool,
-  submit: PropTypes.bool
+  submit: PropTypes.bool,
+  variant: PropTypes.string,
+  size: PropTypes.string,
+  wide: PropTypes.bool
 };
 
 Button.defaultProps = {
   disabled: false,
   classNames: '',
+  variant: '',
   submit: false
 };
 

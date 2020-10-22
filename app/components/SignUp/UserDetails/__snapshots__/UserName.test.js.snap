@@ -35,11 +35,11 @@ exports[`UserName it renders 1`] = `
           className="tooltip"
         >
           <hx-icon
-            id="username-tooltip"
+            id="username"
             type="help-circle"
           />
           <hx-tooltip
-            for="username-tooltip"
+            for="username"
             position="right-middle"
           >
             If your first name or last name is changed, a new username will be automatically generated for you.

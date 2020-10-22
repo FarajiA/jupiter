@@ -11,7 +11,6 @@ import AddressSection from './AddressSection';
 import CurrencySelector from './CurrencySelector';
 import ContractEntitySelector from './ContractEntitySelector';
 import Button from '../../helix/buttons/Button';
-import Submit from '../../helix/buttons/Submit';
 
 export class BillingInfoForm extends React.Component {
   componentDidUpdate(prevProps) {
@@ -73,9 +72,11 @@ export class BillingInfoForm extends React.Component {
                 />
               </div>
               <div className="hxCol hxSpan-6 align-right">
-                <Submit
-                  classNames="btn-wide hxBtn hxPrimary"
+                <Button
                   label={t('common:actions.basic.next')}
+                  variant="primary"
+                  size="wide"
+                  submit
                 />
               </div>
             </div>

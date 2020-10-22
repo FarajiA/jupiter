@@ -163,10 +163,6 @@ hx-text-control[hx-dirty] > input[type="password"]:enabled:invalid, hx-text-cont
     border: 2px solid #d32f2f!important;
 }
 
-.tooltip hx-icon {
-    margin-left: 5px;
-}
-
 .disallow-user-select {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -178,7 +174,11 @@ hx-text-control[hx-dirty] > input[type="password"]:enabled:invalid, hx-text-cont
     display: inline-block;
 }
 
-.tooltip code {
+.tooltip hx-icon {
+    margin-left: 5px;
+}
+
+.tooltip .help-block{
     color: #c7254e;
     background-color: #f9f2f4;
     border-radius: 4px;

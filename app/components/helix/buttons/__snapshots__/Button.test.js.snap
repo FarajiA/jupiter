@@ -2,10 +2,13 @@
 
 exports[`Button it renders correct props 1`] = `
 <button
-  className="hxBtn "
+  className="hxBtn hxPrimary  new-class btn-wide"
   disabled={false}
+  onClick={[MockFunction]}
   type="button"
 >
-  Click Me!
+  <span>
+    Click Me!
+  </span>
 </button>
 `;

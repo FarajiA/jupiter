@@ -36,7 +36,9 @@ export const Product = ({ customerType, clearChannelType }) => {
     }
   ];
   const tooltip = (
-    <Tooltip id="product-restriction">{t('account:customer.tips.rbu.productRestriction')}</Tooltip>
+    <Tooltip id="product-restriction">
+      {t('account:customer.tips.rbu.productRestriction')}
+    </Tooltip>
   );
   return (
     <Field

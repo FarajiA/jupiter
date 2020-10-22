@@ -34,23 +34,26 @@ describe('UserInfoForm', () => {
     return enzyme.shallow(<UserInfoForm {...defaultProps} {...props} />);
   };
 
+  const findButton = (wrapper, isSubmit = false) => {
+    return wrapper.findWhere((child) => child.name() === 'Button' && child.prop('submit') === isSubmit);
+  };
+
   afterEach(() => {
     jest.resetAllMocks();
   });
 
   test('back button navigates to address page onClick', () => {
-    const wrapper = shallow();
-    wrapper.find('Button').simulate('click');
+    findButton(shallow()).simulate('click');
     expect(pushMock).toBeCalledWith('/billing');
   });
 
   test('submit button is disabled if pending is true', () => {
-    const wrapper = shallow({ pending: true }).find('Submit');
-    expect(wrapper.prop('disabled')).toBeTruthy();
+    const button = findButton(shallow({ pending: true }), true);
+    expect(button.prop('disabled')).toBeTruthy();
   });
 
   test('submit button is not disabled if form is valid and pending is false', () => {
-    const wrapper = shallow({ pending: false }).find('Submit');
+    const wrapper = findButton(shallow({ pending: false }), true);
     expect(wrapper.prop('disabled')).toBeFalsy();
   });
 

@@ -5,11 +5,11 @@ exports[`Tooltip it renders correct props 1`] = `
   className="tooltip"
 >
   <hx-icon
-    id="testing-tooltip"
+    id="testing"
     type="help-circle"
   />
   <hx-tooltip
-    for="testing-tooltip"
+    for="testing"
     position="right-middle"
   >
     &lt;h1&gt;Tooltip Content&lt;/h1&gt;
