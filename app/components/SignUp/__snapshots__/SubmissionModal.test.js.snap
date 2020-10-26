@@ -20,11 +20,13 @@ exports[`SubmissionModal it renders 1`] = `
     </hx-div>
     <footer>
       <button
-        className="hxBtn hxPrimary"
+        className="hxBtn   hxPrimary"
         disabled={false}
         type="button"
       >
-        OK
+        <span>
+          OK
+        </span>
       </button>
     </footer>
   </hx-modal>

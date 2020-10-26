@@ -6,12 +6,12 @@ import { withTranslation } from 'react-i18next';
 import { formatRequest } from '../../../../utils/signup';
 import { submitUserData } from '../../../actions/signUpUser';
 import { resetReduxState } from '../../../actions/resetReduxState';
-import SubmissionModal from '../SubmissionModal';
-import Button from '../../helix/buttons/Button';
-import Submit from '../../helix/buttons/Submit';
-import UserInfo from './UserInfo';
 import { FormSection, reduxForm } from 'redux-form';
 import { asyncValidate, validateUser } from '../../../validators';
+
+import SubmissionModal from '../SubmissionModal';
+import Button from '../../helix/buttons/Button';
+import UserInfo from './UserInfo';
 
 export class UserInfoForm extends React.Component {
   state = {
@@ -44,17 +44,18 @@ export class UserInfoForm extends React.Component {
             <div className="hxRow">
               <div className="hxCol hxSpan-6 align-left">
                 <Button
-                  classNames="btn-wide"
                   onClick={() => history.push('/billing')}
                   label={t('common:actions.basic.back')}
+                  wide
                 />
               </div>
               <div className="hxCol hxSpan-6 align-right">
-                <Submit
-                  classNames="hxBtn hxPrimary"
+                <Button
                   label={t('common:actions.basic.submit')}
                   disabled={pending}
                   processing={pending}
+                  variant="primary"
+                  submit
                 />
               </div>
             </div>

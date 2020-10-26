@@ -76,7 +76,7 @@ describe('CustomerInfoForm', () => {
   test('next button navigates to address page onClick', () => {
     const push = jest.fn();
     const wrapper = shallow({ history: { push } });
-    wrapper.find('Submit').simulate('click');
+    wrapper.find('Button').simulate('click');
     expect(submitMock).toHaveBeenCalled();
   });
 

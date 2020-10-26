@@ -61,11 +61,11 @@ exports[`Product it renders 1`] = `
         className="tooltip"
       >
         <hx-icon
-          id="product-restriction-tooltip"
+          id="product-restriction"
           type="help-circle"
         />
         <hx-tooltip
-          for="product-restriction-tooltip"
+          for="product-restriction"
           position="right-middle"
         >
           Currently RBU customers only have access to Managed AWS and Rackspace Private Cloud - VMware

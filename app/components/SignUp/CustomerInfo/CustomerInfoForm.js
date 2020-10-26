@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { change, FormSection, formValueSelector, reduxForm } from 'redux-form';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router';
-import Submit from '../../helix/buttons/Submit';
 import { validateCustomerInformation } from '../../../validators';
+import { getCountry } from '../../../actions/address/getCountry';
+import { ADDRESS_FIELDS } from '../../../actions/constants/address';
+
 import CustomerType from './CustomerType';
 import ChannelType from './infoselectors/ChannelType';
 import Product from './Product';
-import { ADDRESS_FIELDS } from '../../../actions/constants/address';
-import { getCountry } from '../../../actions/address/getCountry';
+import Button from '../../helix/buttons/Button';
 
 export class CustomerInfoForm extends React.Component {
   componentDidUpdate(prevProps) {
@@ -67,10 +68,11 @@ export class CustomerInfoForm extends React.Component {
           <div className="NavButtons">
             <div className="hxRow">
               <div className="hxCol hxSpan-12 align-right">
-                <Submit
-                  classNames="btn-wide hxBtn hxPrimary"
+                <Button
                   label={t('common:actions.basic.next')}
                   submit
+                  variant="primary"
+                  wide
                 />
               </div>
             </div>
